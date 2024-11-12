@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1280" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tp3.Controller">
+   <center>
+      <VBox id="centerBorderPane" alignment="CENTER" prefWidth="800.0" spacing="20.0">
+         <padding>
+            <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+         </padding>
+
+         <!--Les infos adresse a l'utilisateur-->
+         <VBox alignment="TOP_LEFT" prefHeight="400.0" prefWidth="1240.0">
+            <padding>
+               <Insets bottom="20.0" left="0" right="0" top="20.0" />
+            </padding>
+            <TableView fx:id="memberTableView" editable="true" prefHeight="401.0" prefWidth="1240.0" tableMenuButtonVisible="true">
+              <columns>
+<!--                <TableColumn prefWidth="200.0" text="Prenom" />-->
+<!--                <TableColumn prefWidth="200.0" text="Nom" />-->
+<!--                <TableColumn prefWidth="200.0" text="Date de naissance" />-->
+<!--                <TableColumn prefWidth="200.0" text="Email" />-->
+<!--                <TableColumn prefWidth="200.0" text="Status" />-->
+<!--                <TableColumn prefWidth="200.0" text="Domaine" />-->
+<!--                <TableColumn prefWidth="200.0" text="Tel/Matricule" />-->
+              </columns>
+            </TableView>
+<!--            <ListView fx:id="memberListView" onMouseClicked="#onOUVVRIRmodificationReservationClick" prefHeight="32.0" prefWidth="560.0" />-->
+
+         </VBox>
+
+         <Label fx:id="messageErreur" />
+      </VBox>
+   </center>
+   <top>
+      <AnchorPane prefHeight="45.0" prefWidth="540.0" BorderPane.alignment="CENTER">
+         <children>
+
+            <!--Le titrre de la page-->
+            <Label styleClass="titre" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="50.0">Modifier une réservation </Label>
+            <ImageView fitHeight="132.0" fitWidth="140.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0">
+<!--               <image>-->
+<!--                  <Image url="@../../../images/Modification.png" />-->
+<!--               </image>-->
+            </ImageView>
+            <DatePicker id="datePick" fx:id="datePicker" layoutX="279.0" layoutY="111.0" />
+            <DatePicker id="datePicker" layoutX="381.0" layoutY="38.0" />
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>
