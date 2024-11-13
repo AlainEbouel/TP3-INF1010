@@ -6,23 +6,22 @@ import javafx.beans.property.SimpleStringProperty;
 import java.time.LocalDate;
 
 public abstract class Member {
-    private SimpleStringProperty firstName;
-    private SimpleStringProperty lastName ;
-    private SimpleStringProperty email;
-    private SimpleStringProperty birthDate;
-    private SimpleStringProperty status;
-    private SimpleStringProperty fieldActivity;
+    private final SimpleStringProperty firstName;
+    private final SimpleStringProperty lastName ;
+    private final SimpleStringProperty email;
+    private final SimpleStringProperty birthDate;
+    private final SimpleStringProperty status;
+    private final SimpleStringProperty fieldActivity;
 
     public Member(String firstName, String lastName, LocalDate birthDate, String fieldActivity) {
-
         this.lastName = new SimpleStringProperty(firstName);
         this.firstName = new SimpleStringProperty(lastName);
         this.birthDate = new SimpleStringProperty(birthDate.toString());
         this.status = new SimpleStringProperty(Status.Actif.toString());
         this.email = new SimpleStringProperty(generateEmail());
         this.fieldActivity = new SimpleStringProperty(fieldActivity);
-
     }
+
     public SimpleStringProperty firstNameProperty() {
         return firstName;
     }
@@ -96,31 +95,8 @@ public abstract class Member {
     }
 
 
-
-
-    /*
-     *    ** **  Public methods **
-     * */
-
-
-
-//    @Override
-//    public String toString() {
-//        return  formatField(firstName, 30) + " |" +
-//                formatField(lastName, 30) + " |" +
-//                formatField(birthDate.toString(), 10) + " |" +
-//                formatField(email, 30) + " |     " +
-//                formatField(status.toString(),10) + " |" +
-//                formatField(fieldActivity, 30) + " |" ;
-//    }
-
-    /*
-    *    ** **  Privates methods **
-    * */
     private String generateEmail()
     {
         return (firstName.getValue() + "."+ lastName.getValue() + "@uqtr.ca").toLowerCase();
     }
-
-    protected abstract String formatField(String date, int maxLength);
 }
