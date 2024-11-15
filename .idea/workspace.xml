@@ -10,12 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="662af442-1c40-4965-b325-087f3315a383" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/tp3_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tp3/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tp3/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Directory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Directory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,9 +28,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2osDzuWE0jXSzvnKTMECPq7QUMG" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -46,13 +42,13 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Program Files/JetBrains/IntelliJ IDEA Ultimate/bin/wslproxy",
+    "last_opened_file_path": "C:/Users/ebouelnz/Downloads/mysql-connector-j-9.1.0/mysql-connector-j-9.1.0.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.32050136",
     "vue.rearranger.settings.migration": "true"
@@ -84,6 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1731649657791</updated>
       <workItem from="1731649658598" duration="2742000" />
+      <workItem from="1731681098509" duration="753000" />
     </task>
     <servers />
   </component>
