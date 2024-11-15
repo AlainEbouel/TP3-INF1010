@@ -13,6 +13,7 @@
       <change afterPath="$PROJECT_DIR$/.idea/artifacts/tp3_jar.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tp3/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tp3/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/models/Directory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Directory.java" afterDir="false" />
     </list>
@@ -82,7 +83,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1731649657791</updated>
-      <workItem from="1731649658598" duration="2154000" />
+      <workItem from="1731649658598" duration="2742000" />
     </task>
     <servers />
   </component>

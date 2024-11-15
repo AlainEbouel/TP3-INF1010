@@ -43,7 +43,7 @@ public class MainController implements Initializable {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con= DriverManager.getConnection(
-                    "jdbc:mysql://127.0.0.1:3306/university","root","123456");
+                    "jdbc:mysql://192.168.2.211:3306/university","root","123456");
             //here sonoo is database name, root is username and password
             Statement stmt=con.createStatement();
 //            ResultSet rs2=stmt.executeQuery("source /home/aebouel@progi.local/pratiques1/java/TP3-INF1010/backup.sql; select * from members INNER JOIN professors ON members.member_id=professors.member_id ;");
