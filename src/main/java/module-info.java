@@ -10,6 +10,8 @@ module com.tp3 {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.sql;
+    requires jdk.jdi;
 
     opens com.tp3 to javafx.fxml;
     exports com.tp3;

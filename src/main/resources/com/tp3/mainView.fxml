@@ -5,35 +5,6 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane id="mainBorderPane" fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tp3.MainController">
-   <center>
-      <VBox id="centerBorderPane" alignment="CENTER" prefWidth="800.0" spacing="20.0">
-         <padding>
-            <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-         </padding>
-
-         <!--Les infos adresse a l'utilisateur-->
-<!--         <VBox fx:id="vboxTable" alignment="TOP_LEFT" prefHeight="400.0" prefWidth="1240.0">-->
-<!--            <padding>-->
-<!--               <Insets bottom="20.0" left="0" right="0" top="20.0" />-->
-<!--            </padding>-->
-<!--            <TableView fx:id="memberTableView" editable="true" prefHeight="401.0" prefWidth="1240.0" tableMenuButtonVisible="true">-->
-<!--              <columns>-->
-<!--&lt;!&ndash;                <TableColumn prefWidth="200.0" text="Prenom" />&ndash;&gt;-->
-<!--&lt;!&ndash;                <TableColumn prefWidth="200.0" text="Nom" />&ndash;&gt;-->
-<!--&lt;!&ndash;                <TableColumn prefWidth="200.0" text="Date de naissance" />&ndash;&gt;-->
-<!--&lt;!&ndash;                <TableColumn prefWidth="200.0" text="Email" />&ndash;&gt;-->
-<!--&lt;!&ndash;                <TableColumn prefWidth="200.0" text="Status" />&ndash;&gt;-->
-<!--&lt;!&ndash;                <TableColumn prefWidth="200.0" text="Domaine" />&ndash;&gt;-->
-<!--&lt;!&ndash;                <TableColumn prefWidth="200.0" text="Tel/Matricule" />&ndash;&gt;-->
-<!--              </columns>-->
-<!--            </TableView>-->
-<!--&lt;!&ndash;            <ListView fx:id="memberListView" onMouseClicked="#onOUVVRIRmodificationReservationClick" prefHeight="32.0" prefWidth="560.0" />&ndash;&gt;-->
-
-<!--         </VBox>-->
-
-         <Label fx:id="messageErreur" />
-      </VBox>
-   </center>
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
@@ -45,8 +16,8 @@
                       <MenuItem mnemonicParsing="false" text="Action 2" />
                     </items>
                   </MenuButton>
-                  <Button fx:id="listStudentButton" mnemonicParsing="false" onAction="#onListStudentButtonAction" prefHeight="24.0" prefWidth="200.0" text="Lister les étudiants" />
-                  <ChoiceBox fx:id="listProfessorsChoiceBox" onMouseReleased="#onChooseProfessorFieldMouseReleased" onTouchMoved="#onListProfessorTouchMoved" prefWidth="150.0" />
+                  <Button fx:id="listStudentButton" mnemonicParsing="false" onAction="#onListStudentButtonAction" prefHeight="24.0" prefWidth="200.0" text="Lister les étudiants" textFill="blue" />
+                  <ChoiceBox fx:id="listProfessorsChoiceBox" onMouseReleased="#onChooseProfessorFieldMouseReleased" onTouchMoved="#onListProfessorTouchMoved" prefWidth="150.0"  />
                </children>
                <VBox.margin>
                   <Insets bottom="15.0" />
@@ -58,25 +29,4 @@
    <padding>
       <Insets bottom="50.0" left="50.0" right="50.0" top="10.0" />
    </padding>
-   <right>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </right>
 </BorderPane>

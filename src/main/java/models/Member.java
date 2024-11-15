@@ -1,6 +1,5 @@
 package models;
 
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.time.LocalDate;
@@ -11,15 +10,15 @@ public abstract class Member {
     private final SimpleStringProperty email;
     private final SimpleStringProperty birthDate;
     private final SimpleStringProperty status;
-    private final SimpleStringProperty fieldActivity;
+    private final SimpleStringProperty activityField;
 
-    public Member(String firstName, String lastName, LocalDate birthDate, String fieldActivity) {
+    public Member(String firstName, String lastName, LocalDate birthDate, String activityField) {
         this.lastName = new SimpleStringProperty(firstName);
         this.firstName = new SimpleStringProperty(lastName);
         this.birthDate = new SimpleStringProperty(birthDate.toString());
         this.status = new SimpleStringProperty(Status.Actif.toString());
         this.email = new SimpleStringProperty(generateEmail());
-        this.fieldActivity = new SimpleStringProperty(fieldActivity);
+        this.activityField = new SimpleStringProperty(activityField);
     }
 
     public SimpleStringProperty firstNameProperty() {
@@ -58,12 +57,12 @@ public abstract class Member {
         return status.get();
     }
 
-    public String getFieldActivity() {
-        return fieldActivity.get();
+    public String getActivityField() {
+        return activityField.get();
     }
 
-    public void setFieldActivity(String fieldActivity) {
-        this.fieldActivity.setValue(fieldActivity);
+    public void setActivityField(String activityField) {
+        this.activityField.setValue(activityField);
     }
 
     public SimpleStringProperty lastNameProperty() {
@@ -90,8 +89,8 @@ public abstract class Member {
         this.status.setValue(status);
     }
 
-    public SimpleStringProperty fieldActivityProperty() {
-        return fieldActivity;
+    public SimpleStringProperty activityFieldProperty() {
+        return activityField;
     }
 
 

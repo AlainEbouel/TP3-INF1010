@@ -39,6 +39,7 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+
         studentList = FXCollections.observableArrayList();
         professorList = FXCollections.observableArrayList();
         directory = new Directory(studentList, professorList);
@@ -150,5 +151,8 @@ public class MainController implements Initializable {
 
             System.out.println(listProfessorsChoiceBox.getSelectionModel().getSelectedItem());
         });
+    }
+
+    public void onListProfessorTouchMoved(TouchEvent touchEvent) {
     }
 }
