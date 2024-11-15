@@ -48,20 +48,20 @@ public class Directory {
 //        studentList.add(new Student("Mark", "Bouchard",  LocalDate.of(1988,2,11), "Communication sociale"));
 //        studentList.add(new Student("Morgan", "Couture", LocalDate.of(1997,3,15), "Etudes francaise"));
 //        studentList.add(new Student("Paul", "Miller", LocalDate.of(2004,5,18),  "Genie electrique"));
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con= DriverManager.getConnection(
-                    "jdbc:mysql://127.0.0.1:3306/university","root","password");
-            //here sonoo is database name, root is username and password
-            Statement stmt=con.createStatement();
-//            ResultSet rs2=stmt.executeQuery("source /home/aebouel@progi.local/pratiques1/java/TP3-INF1010/backup.sql; select * from members INNER JOIN professors ON members.member_id=professors.member_id ;");
-            ResultSet rs=stmt.executeQuery("select * from members INNER JOIN professors ON members.member_id=professors.member_id ;");
-            while(rs.next())
-                System.out.println(rs.getString(2)+"  "+rs.getString(3)+"  "+rs.getString(4));
-            con.close();
-        }catch(ClassNotFoundException | SQLException e){
-            System.out.println("Error found");
-            System.out.println(e);}
+//        try{
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            Connection con= DriverManager.getConnection(
+//                    "jdbc:mysql://127.0.0.1:3306/university","root","123456");
+//            //here sonoo is database name, root is username and password
+//            Statement stmt=con.createStatement();
+////            ResultSet rs2=stmt.executeQuery("source /home/aebouel@progi.local/pratiques1/java/TP3-INF1010/backup.sql; select * from members INNER JOIN professors ON members.member_id=professors.member_id ;");
+//            ResultSet rs=stmt.executeQuery("select * from members INNER JOIN professors ON members.member_id=professors.member_id ;");
+//            while(rs.next())
+//                System.out.println(rs.getString(2)+"  "+rs.getString(3)+"  "+rs.getString(4));
+//            con.close();
+//        }catch(ClassNotFoundException | SQLException e){
+//            System.out.println("Error found");
+//            System.out.println(e);}
 
         professorList.add(new Professor("Jean",  "Dino", today, "Philosophie", "819 900 0500"));
         professorList.add(new Professor("Chanel",  "Atangana", today, "Science pure", "489 056 5656"));

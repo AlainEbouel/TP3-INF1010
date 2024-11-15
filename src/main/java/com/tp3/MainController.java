@@ -11,11 +11,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 import models.* ;
@@ -38,6 +40,27 @@ public class MainController implements Initializable {
 //    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con= DriverManager.getConnection(
+                    "jdbc:mysql://127.0.0.1:3306/university","root","password");
+            //here sonoo is database name, root is username and password
+            Statement stmt=con.createStatement();
+//            ResultSet rs2=stmt.executeQuery("source /home/aebouel@progi.local/pratiques1/java/TP3-INF1010/backup.sql; select * from members INNER JOIN professors ON members.member_id=professors.member_id ;");
+            ResultSet rs=stmt.executeQuery("select * from members INNER JOIN professors ON members.member_id=professors.member_id ;");
+            String s = "";
+            while(rs.next())
+//                System.out.println(rs.getString(2)+"  "+rs.getString(3)+"  "+rs.getString(4));
+                s += rs.getString(2)+"  \n"+rs.getString(3)+"\n  "+rs.getString(4);
+
+            TextArea textArea = new TextArea();
+            textArea.setText(s);
+            mainBorderPane.setRight(textArea);
+            con.close();
+        }catch(ClassNotFoundException | SQLException e){
+            System.out.println("Error found");
+            System.out.println(e);}
+
 
 
         studentList = FXCollections.observableArrayList();
