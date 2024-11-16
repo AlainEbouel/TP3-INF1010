@@ -3,6 +3,7 @@ package models;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public abstract class Member {
     private final SimpleStringProperty firstName;
@@ -12,12 +13,20 @@ public abstract class Member {
     private final SimpleStringProperty status;
     private final SimpleStringProperty activityField;
 
-    public Member(String firstName, String lastName, LocalDate birthDate, String activityField) {
+    public Member(String firstName, String lastName, Date birthDate, String activityField) {
         this.lastName = new SimpleStringProperty(firstName);
         this.firstName = new SimpleStringProperty(lastName);
         this.birthDate = new SimpleStringProperty(birthDate.toString());
         this.status = new SimpleStringProperty(Status.Actif.toString());
         this.email = new SimpleStringProperty(generateEmail());
+        this.activityField = new SimpleStringProperty(activityField);
+    }
+    public Member(String firstName, String lastName, String email, Date birthDate, String status, String activityField) {
+        this.lastName = new SimpleStringProperty(firstName);
+        this.firstName = new SimpleStringProperty(lastName);
+        this.birthDate = new SimpleStringProperty(birthDate.toString());
+        this.status = new SimpleStringProperty(status.toString());
+        this.email = new SimpleStringProperty(email);
         this.activityField = new SimpleStringProperty(activityField);
     }
 

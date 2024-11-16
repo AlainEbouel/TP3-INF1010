@@ -9,10 +9,15 @@ import java.util.Date;
 public class Student extends Member {
     private final SimpleStringProperty registrationNumber;
 
-    public Student(String firstName, String lastName, LocalDate birthDate, String fieldActivity) {
+    public Student(String firstName, String lastName, Date birthDate, String fieldActivity) {
         super(firstName, lastName, birthDate, fieldActivity);
         this.registrationNumber = new SimpleStringProperty(generateRegistrationNumber());
     }
+    public Student(String firstName, String lastName, String email, Date birthDate, String status, String fieldActivity, String phoneNumber) {
+        super(firstName, lastName, email, birthDate, status, fieldActivity);
+        this.registrationNumber = new SimpleStringProperty(phoneNumber);
+    }
+
 
     public String getRegistrationNumber() {
         return registrationNumber.getValue();

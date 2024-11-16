@@ -9,150 +9,128 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import models.* ;
+import rmi.Directory;
 
 
 public class MainController implements Initializable {
     @FXML
+    private HBox adminSection;
+    @FXML
+    private Button listStudentButton;
+    @FXML
+    private Button rechercherButton;
+    @FXML
+    private TextField rechecherTextField;
+    @FXML
+    private TextField seConnecterTextField;
+    @FXML
     private ChoiceBox listProfessorsChoiceBox;
     @FXML
     private BorderPane mainBorderPane;
+
+    @FXML
+    private Button seConnectButton;
+
     private ObservableList<Student> studentList;
     private ObservableList<Professor> professorList;
     private Directory directory;
 
-//    public Controller() {
-//        // ListeReservationController stockageListeDansClasse = new ListeReservationController();
-//        //reservation = stockageListeDansClasse.getListeOfficielReservation();
-////        members = Directory.getMembersObsList();
-//
-//    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
         studentList = FXCollections.observableArrayList();
         professorList = FXCollections.observableArrayList();
-        directory = new Directory(studentList, professorList);
-        mainBorderPane.setLeft(directory.getStudentTable());
-
-        Label l = new Label("This is a choice box");
-        Label l1 = new Label("nothing selected");
-
-        // string array
-        String st[] = { "Arnab", "Andrew", "Ankit", "None" };
-
-        // create a choiceBox
-//        ChoiceBox.set  (FXCollections.observableArrayList(st));
-        listProfessorsChoiceBox.setItems(FXCollections.observableArrayList(st));
-        // add a listener
-        listProfessorsChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-
-            // if the item of the list is changed
-            public void changed(ObservableValue ov, Number value, Number new_value)
-            {
-
-                // set the text for the label to the selected item
-//                l1.setText(st[new_value.intValue()] + " selected");
-//                System.out.println(listProfessorsChoiceBox.getSelectionModel().getSelectedItem());
-//                System.out.println("new value="+ ov.getValue());
-//                System.out.println("value=" + value);
-//                System.out.println("vov=" + ov.getValue());
-
-            }
-        });
-//        listProfessorsChoiceBox.setOnAction((event) -> {
-//            int selectedIndex = listProfessorsChoiceBox.getSelectionModel().getSelectedIndex();
-//            Object selectedItem = listProfessorsChoiceBox.getSelectionModel().getSelectedItem();
-//
-//            System.out.println("Selection made: [" + selectedIndex + "] " + selectedItem);
-//            System.out.println("   ChoiceBox.getValue(): " + listProfessorsChoiceBox.getValue());
-//        });
-
+        try {
+            directory = new Directory(studentList, professorList);
+            directory.pullMembers();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        mainBorderPane.setLeft(directory.getProfessorTable());
+//        mainBorderPane.setLeft(directory.getProfessorTable());
     }
-
-    // Pull from database
-
 
     @FXML
     protected void onOUVVRIRmodificationReservationClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("ModificationView2.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 600, 440);
-        Stage stage = new Stage();
-        stage.setTitle("Modification Reservation");
-        stage.setScene(scene);
+    }
 
-        stage.setOnHidden(e -> {
-            // listeReservation.refresh();
-        });
-        stage.show();
+    @FXML
+    private void OnSeConnecterButtonAction(ActionEvent actionEvent) {
+        /*  TODO  */
+        //seConnecterTextField.setVisible(false);
+        /*  TODO  */
+       // adminSection.setVisible(false);
+        /*  TODO  */
+    }
+
+    @FXML
+    private void onListStudentButtonAction(ActionEvent actionEvent) {
+        mainBorderPane.setLeft(directory.getStudentTable());
+    }
+
+    @FXML
+    private void OnlistProfessorContextMenuRequested(ContextMenuEvent contextMenuEvent) {
+        /* TODO */
+    }
+
+    @FXML
+    private void onRechercherButtonAction(ActionEvent actionEvent) {
+//        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("ModificationView2.fxml"));
+//
+//        Scene scene = new Scene(fxmlLoader.load(), 600, 440);
+//        Stage stage = new Stage();
+//        stage.setTitle("Modification Reservation");
+//        stage.setScene(scene);
+//
+//        stage.setOnHidden(e -> {
+//            // listeReservation.refresh();
+//        });
+//        stage.show();
 
 //        int index = memberListView.getSelectionModel().getSelectedIndex();
 
 //        ModifReservation2Controller boum = fxmlLoader.getController();
 //        boum.initializeData(reservation.get(index));
+        /* TODO */
     }
 
-    public void onListStudentButtonAction(ActionEvent actionEvent) {
-        mainBorderPane.setLeft(directory.getStudentTable());
-
+    @FXML
+    private void onAjouterButtonAction(ActionEvent actionEvent) {
+        /* TODO */
     }
 
-    public void onListProfessorButtonAction(ActionEvent actionEvent) {
-        mainBorderPane.setLeft(directory.getProfessorTable());
-
+    @FXML
+    private void onModifierButtonAction(ActionEvent actionEvent) {
+        /* TODO */
     }
 
-    public void OnlistProfessorContextMenuRequested(ContextMenuEvent contextMenuEvent) {
-        System.out.println(contextMenuEvent.toString());
-        System.out.println(contextMenuEvent.getSource().toString());
+    @FXML
+    private void onSupprimerButtonAction(ActionEvent actionEvent) {
+        /* TODO */
     }
 
-    public void OnListProfessorMenuButtonAction(ActionEvent actionEvent) {
+    @FXML
+    private void onMettreListeRougeButtonAction(ActionEvent actionEvent) {
+        /* TODO */
     }
 
-    public void onListProfessorInputKeyReleased(KeyEvent keyEvent) {
-        System.out.println("onListProfessorInputMethodTextChanged");
-        listProfessorsChoiceBox.setOnAction((event) -> {
-            int selectedIndex = listProfessorsChoiceBox.getSelectionModel().getSelectedIndex();
-            Object selectedItem = listProfessorsChoiceBox.getSelectionModel().getSelectedItem();
-
-            System.out.println("Selection made: [" + selectedIndex + "] " + selectedItem);
-            System.out.println("   ChoiceBox.getValue(): " + listProfessorsChoiceBox.getValue());
-        });
-    }
-
-    public void onListProfessorContextMenueRequested(ContextMenuEvent contextMenuEvent) {
-        System.out.println("onListProfessorInputMethodTextChanged");
-        listProfessorsChoiceBox.setOnAction((event) -> {
-            int selectedIndex = listProfessorsChoiceBox.getSelectionModel().getSelectedIndex();
-            Object selectedItem = listProfessorsChoiceBox.getSelectionModel().getSelectedItem();
-
-            System.out.println("Selection made: [" + selectedIndex + "] " + selectedItem);
-            System.out.println("   ChoiceBox.getValue(): " + listProfessorsChoiceBox.getValue());
-        });
-    }
-
-    public void onChooseProfessorFieldMouseReleased(MouseEvent mouseEvent) {
-//        System.out.println("onListProfessorInputMethodTextChanged2");
-
-        listProfessorsChoiceBox.setOnAction((event) -> {
-            int selectedIndex = listProfessorsChoiceBox.getSelectionModel().getSelectedIndex();
-
-            System.out.println(listProfessorsChoiceBox.getSelectionModel().getSelectedItem());
-        });
-    }
-
-    public void onListProfessorTouchMoved(TouchEvent touchEvent) {
+    @FXML
+    private void onRetirerListeRougeButtonAction(ActionEvent actionEvent) {
+        /* TODO */
     }
 }

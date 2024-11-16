@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `members` (
   `first_name` varchar(50) DEFAULT NULL,
   `last_name` varchar(50) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
-  `birthdate` varchar(10) DEFAULT NULL,
+  `birthdate` date DEFAULT NULL,
   `status` varchar(10) DEFAULT NULL,
   `activityField` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`member_id`)
@@ -37,13 +37,12 @@ CREATE TABLE IF NOT EXISTS `professors` (
   FOREIGN KEY (`member_id`) REFERENCES `members`(`member_id`) ON DELETE CASCADE
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10001 ;
 
-
 --
 -- Dumping data for table `members`
 --
 
 INSERT INTO `members` (`member_id`, `first_name`, `last_name`, `email`, `birthdate`, `status`, `activityField`) VALUES
-(1, 'Diane', 'Jih', 'diane.jih@uqtr.ca', '1998-10-12', 'Actif', 'informatique'),
+(1, 'Diane', 'Jih', 'diane.jih@uqtr.ca', '1998-10-12', 'Actif', 'Informatique'),
 (2, 'Rogers', 'Paul', 'roger.paul@uqtr.ca', '1987-01-05', 'Actif', 'Administration des affaires'),
 (3, 'David', 'John', 'david.john@uqtr.ca', '2002-11-09', 'Actif', 'Education prescolaire'),
 (4, 'Maria', 'Cisse', 'maria.cisse', '2007-12-25', 'Inactif', 'Art visuel'),
