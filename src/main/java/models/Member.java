@@ -1,8 +1,5 @@
 package models;
-
 import javafx.beans.property.SimpleStringProperty;
-
-import java.time.LocalDate;
 import java.util.Date;
 
 public abstract class Member {
@@ -25,7 +22,7 @@ public abstract class Member {
         this.lastName = new SimpleStringProperty(firstName);
         this.firstName = new SimpleStringProperty(lastName);
         this.birthDate = new SimpleStringProperty(birthDate.toString());
-        this.status = new SimpleStringProperty(status.toString());
+        this.status = new SimpleStringProperty(status);
         this.email = new SimpleStringProperty(email);
         this.activityField = new SimpleStringProperty(activityField);
     }

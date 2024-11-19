@@ -12,7 +12,13 @@ module com.tp3 {
     requires com.almasb.fxgl.all;
     requires java.sql;
     requires jdk.jdi;
+    requires java.rmi;
+    requires mysql.connector.j;
 
     opens com.tp3 to javafx.fxml;
     exports com.tp3;
+    exports rmi;
+    opens rmi to javafx.fxml;
+    exports models;
+    opens models to javafx.fxml;
 }

@@ -1,32 +1,34 @@
 package com.tp3;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import models.* ;
-import rmi.Directory;
+import models.DirectoryView;
+import rmi.IDirectory;
 
 
 public class MainController implements Initializable {
+    public DatePicker datepicker;
     @FXML
     private HBox adminSection;
     @FXML
@@ -47,7 +49,7 @@ public class MainController implements Initializable {
 
     private ObservableList<Student> studentList;
     private ObservableList<Professor> professorList;
-    private Directory directory;
+    private DirectoryView directoryView;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -55,12 +57,12 @@ public class MainController implements Initializable {
         studentList = FXCollections.observableArrayList();
         professorList = FXCollections.observableArrayList();
         try {
-            directory = new Directory(studentList, professorList);
-            directory.pullMembers();
+            directoryView = new DirectoryView(studentList, professorList);
+//            directoryView.pullMembers();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        mainBorderPane.setLeft(directory.getProfessorTable());
+        mainBorderPane.setLeft(directoryView.getProfessorTable());
 //        mainBorderPane.setLeft(directory.getProfessorTable());
     }
 
@@ -80,7 +82,7 @@ public class MainController implements Initializable {
 
     @FXML
     private void onListStudentButtonAction(ActionEvent actionEvent) {
-        mainBorderPane.setLeft(directory.getStudentTable());
+        mainBorderPane.setLeft(directoryView.getStudentTable());
     }
 
     @FXML
@@ -132,5 +134,28 @@ public class MainController implements Initializable {
     @FXML
     private void onRetirerListeRougeButtonAction(ActionEvent actionEvent) {
         /* TODO */
+        try {
+            Registry registry = LocateRegistry.getRegistry();
+            IDirectory ref = (IDirectory) registry.lookup("ActiveDirectoryServer");
+                     ArrayList<ArrayList<String>> students = ref.getStudents();
+            for(ArrayList<String> student : students) {
+                for( String s : student ){
+                    System.out.print("/ " + s);
+                }
+                System.out.println();
+//                System.out.println("STUDENT= " + s);
+            }
+
+        } catch (RemoteException | NotBoundException e) {
+            System.out.println("CAught not bound exception in directory");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+//
+//    }
     }
+
+
 }

@@ -1,33 +1,32 @@
-package rmi;
+package models;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import models.Professor;
-import models.Student;
 
 import java.sql.*;
 
 
-public class Directory {
-    private  TableView<Student> studentTable ;
-    private  TableView<Professor> professorTable;
-    private ObservableList<Student> studentList;
-    private ObservableList<Professor> professorList;
-    public Directory(ObservableList<Student> studentsList, ObservableList<Professor> professorsList) throws SQLException {
+public class DirectoryView {
+    private final TableView<Student> studentTable ;
+    private final TableView<Professor> professorTable;
+    private final ObservableList<Student> studentList;
+    private final ObservableList<Professor> professorList;
+    public DirectoryView(ObservableList<Student> studentList, ObservableList<Professor> professorList) throws SQLException {
 
         this.studentTable = new TableView<>();
         this.professorTable = new TableView<>();
-        studentList = FXCollections.observableArrayList();
-        professorList = FXCollections.observableArrayList();
-        pullMembers();
+        this.studentList = studentList;
+        this.professorList = professorList;
+//        pullMembers();
         tableStyle(studentTable);
         tableStyle(professorTable);
         createStudentColumns();
         createProfessorColumns();
         loadStudents();
         loadProfessors();
+
+
     }
 
     public TableView<Student> getStudentTable() {
@@ -37,11 +36,11 @@ public class Directory {
     public TableView<Professor> getProfessorTable() {
         return professorTable;
     }
-    public void pullMembers() throws SQLException {
-        DatabaseClient dbClient = new DatabaseClient();
-        dbClient.selectAllProfesssors(professorList);
-        dbClient.selectAllStudents(studentList);
-    }
+//    public void pullMembers() throws SQLException {
+//        DatabaseClient dbClient = new DatabaseClient();
+//        dbClient.selectAllProfesssors(professorList);
+//        dbClient.selectAllStudents(studentList);
+//    }
     private void createStudentColumns() {
         TableColumn<Student, String> column1 = new TableColumn<>("Prénom");
         column1.setCellValueFactory(c -> c.getValue().lastNameProperty());
@@ -89,4 +88,6 @@ public class Directory {
     private void tableStyle(TableView tableView) {
         tableView.setPrefWidth(1200);
     }
+
+
 }

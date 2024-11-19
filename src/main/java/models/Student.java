@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.rmi.*;
 
 public class Student extends Member {
     private final SimpleStringProperty registrationNumber;

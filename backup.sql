@@ -40,12 +40,11 @@ CREATE TABLE IF NOT EXISTS `professors` (
 --
 -- Dumping data for table `members`
 --
-
 INSERT INTO `members` (`member_id`, `first_name`, `last_name`, `email`, `birthdate`, `status`, `activityField`) VALUES
 (1, 'Diane', 'Jih', 'diane.jih@uqtr.ca', '1998-10-12', 'Actif', 'Informatique'),
 (2, 'Rogers', 'Paul', 'roger.paul@uqtr.ca', '1987-01-05', 'Actif', 'Administration des affaires'),
 (3, 'David', 'John', 'david.john@uqtr.ca', '2002-11-09', 'Actif', 'Education prescolaire'),
-(4, 'Maria', 'Cisse', 'maria.cisse', '2007-12-25', 'Inactif', 'Art visuel'),
+(4, 'Maria', 'Cisse', 'maria.cisse@uqtr.ca', '2007-12-25', 'Inactif', 'Art visuel'),
 (5, 'Morris', 'Kone', 'morris.kone@uqtr.ca', '1990-07-08', 'Actif', 'Biochimie'),
 (6, 'Mohamed', 'Bala', 'mohamed.bala@uqtr.ca', '1995-11-11', 'Actif', 'Biologie_medicale'),
 (7, 'Sanders', 'Atangana', 'sanders.atangana@uqtr.ca', '1971-06-28', 'Inactif', 'Chimie'),
@@ -66,7 +65,7 @@ INSERT INTO `students` (`student_id`, `registration_number`, `member_id`) VALUES
 (7, 'MORC19970315', 9);
 
 --
--- Dumping data for table `students`
+-- Dumping data for table `professors`
 --
 INSERT INTO `professors` (`professor_id`, `phone_number`, `member_id`) VALUES
 (1, '514 515 0569', 2),

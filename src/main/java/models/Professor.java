@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.rmi.*;
 
 public class Professor extends Member{
     private final SimpleStringProperty phoneNumber;
