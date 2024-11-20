@@ -11,45 +11,43 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
-        runShellCmd("cd src/main/java && javac -d classDir rmi/*.java");
-        runShellCmd("cd src/main/java/classDir &&  rmiregistry ");
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://127.0.0.1:3306/university", "root", "123456");
-            Statement statement = connection.createStatement();
+//        runShellCmd("cd src/main/java && javac -d classDir rmi/*.java");
+//        runShellCmd("cd src/main/java/classDir &&  rmiregistry ");
+        String winCmd1 =  "cd src\\main\\java && javac -d classDir " +
+                "rmi\\IDirectory.java rmi\\ActiveDirectoryServer.java rmi\\DatabaseClient.java"; ;
+        String winCmd2 = "cd src\\main\\java\\classDir && start rmiregistry";
+        String linuxCmd1 = "cd src/main/java && javac -d classDir rmi/*.java";
+        String linuxCmd2 = "cd src/main/java/classDir &&  rmiregistry ";
 
-        }catch(ClassNotFoundException | SQLException e){
-            System.out.println(e);}
+
+        boolean isWindows = System.getProperty("os.name")
+                .toLowerCase().startsWith("windows");
+        if (isWindows) {
+            runShellCmd(winCmd1);
+            runShellCmd(winCmd2);
+        } else {
+            runShellCmd(linuxCmd1);
+            runShellCmd(linuxCmd2);
+        }
     }
 
-    private static void runShellCmd(String cmd) throws InterruptedException {
-        ProcessBuilder builder = new ProcessBuilder();
-//        if (isWindows) {
-//            builder.command("cmd.exe", "/c", "dir");
-//        } else {
-//            builder.command("sh", "-c", "ls");
-//        }
-
+    private static void runShellCmd(String cmd) {
+        ProcessBuilder pb = new ProcessBuilder();
+        boolean isWindows = System.getProperty("os.name")
+                .toLowerCase().startsWith("windows");
+        if (isWindows) {
+            pb.command("cmd.exe", "/c", cmd);
+        } else {
+            pb.command("sh", "-c", cmd);
+        }
 
         try {
-            ProcessBuilder pb = new ProcessBuilder("bash", "-c", cmd);
+//            ProcessBuilder pb = new ProcessBuilder("bash", "-c", cmd);
             pb.redirectErrorStream(true);
             Process process = pb.start();
             process.waitFor(10, TimeUnit.SECONDS);
-            try (BufferedReader br = new BufferedReader(
-                    new InputStreamReader(process.getInputStream())
-            )) {
-                StringBuilder stringBuilder = new StringBuilder();
-                String line;
-                while ((line = br.readLine()) != null) {
-                    stringBuilder.append(line);
-                }
-                if (process.exitValue() != 0) {
-                }
-                System.out.println(stringBuilder.toString());
-            }
-        } catch (IOException e) {
+
+        } catch (IOException | InterruptedException e) {
             // recover / etc
         }
     }

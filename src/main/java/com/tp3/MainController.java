@@ -5,10 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -134,13 +131,16 @@ public class MainController implements Initializable {
     @FXML
     private void onRetirerListeRougeButtonAction(ActionEvent actionEvent) {
         /* TODO */
+
+        String label = "";
         try {
             Registry registry = LocateRegistry.getRegistry();
             IDirectory ref = (IDirectory) registry.lookup("ActiveDirectoryServer");
-                     ArrayList<ArrayList<String>> students = ref.getStudents();
+                     ArrayList<ArrayList<String>> students = ref.selectAllStudents();
             for(ArrayList<String> student : students) {
                 for( String s : student ){
                     System.out.print("/ " + s);
+                    label += s + "\n";
                 }
                 System.out.println();
 //                System.out.println("STUDENT= " + s);
@@ -148,9 +148,8 @@ public class MainController implements Initializable {
 
         } catch (RemoteException | NotBoundException e) {
             System.out.println("CAught not bound exception in directory");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
+        mainBorderPane.setRight(new Label(label));
 
 
 //
