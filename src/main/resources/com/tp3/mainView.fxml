@@ -5,23 +5,22 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<BorderPane id="mainBorderPane" fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1280.0" style="-fx-background-color: #032219;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tp3.MainController">
+<BorderPane id="mainBorderPane" fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1280.0" style="-fx-background-color: #032219;" stylesheets="@../../styles/mainView.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tp3.MainController">
    <padding>
       <Insets bottom="50.0" left="50.0" right="50.0" top="10.0" />
    </padding>
    <right>
       <VBox alignment="CENTER" prefHeight="225.0" prefWidth="221.0" spacing="50.0" style="-fx-background-color: #18473c; -fx-border-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" prefHeight="88.0" prefWidth="244.0" spacing="15.0" style="-fx-background-color: #2a402a;">
+            <VBox alignment="CENTER" prefHeight="88.0" prefWidth="244.0" spacing="15.0">
                <children>
                   <Button fx:id="listStudentButton" mnemonicParsing="false" onAction="#onListStudentButtonAction" prefHeight="26.0" prefWidth="175.0" text="Lister les étudiants" textFill="blue" />
-                  <MenuButton alignment="CENTER_RIGHT" mnemonicParsing="false" onContextMenuRequested="#OnlistProfessorContextMenuRequested" text="Lister les professeurs">
+                  <MenuButton alignment="CENTER_RIGHT" mnemonicParsing="false" onContextMenuRequested="#OnlistProfessorContextMenuRequested" style="-fx-text-fill: white;" text="Lister les professeurs">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Action 1" />
                       <MenuItem mnemonicParsing="false" text="Action 2" />
                     </items>
                   </MenuButton>
-                  <Button mnemonicParsing="false" text="Raffraichir" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
@@ -43,7 +42,7 @@
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="87.0" prefWidth="1178.0" spacing="10.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="115.0" prefWidth="161.0" spacing="10.0" style="-fx-border-color: blue;">
+                        <VBox alignment="TOP_CENTER" prefHeight="115.0" prefWidth="161.0" spacing="10.0" style="-fx-border-color: #18473c; -fx-background-color: #18473c;">
                            <children>
                               <Label text="Administrateur" />
                               <TextField fx:id="seConnecterTextField" promptText="Password" />
@@ -55,11 +54,11 @@
                         </VBox>
                         <HBox fx:id="adminSection" alignment="CENTER" prefHeight="137.0" prefWidth="978.0" spacing="50.0">
                            <children>
-                              <VBox alignment="CENTER" layoutX="274.0" layoutY="20.0" prefHeight="88.0" prefWidth="196.0" spacing="5.0" style="-fx-border-color: blue;">
+                              <VBox alignment="CENTER" layoutX="274.0" layoutY="20.0" prefHeight="88.0" prefWidth="196.0" spacing="5.0" style="-fx-border-color: #18473c; -fx-background-color: #18473c;">
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#onAddMemberButtonAction" prefHeight="26.0" prefWidth="143.0" text="Ajouter" />
-                                    <Button mnemonicParsing="false" onAction="#onModifyMemberButtonAction" prefHeight="26.0" prefWidth="144.0" text="Modifier" />
-                                    <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onRemoveMemberButtonAction" prefHeight="26.0" prefWidth="146.0" style="-fx-background-color: #685f5f;" text="Supprimer" />
+                                    <Button fx:id="addMemberButton" mnemonicParsing="false" onAction="#onAddMemberButtonAction" prefHeight="26.0" prefWidth="143.0" text="Ajouter" />
+                                    <Button fx:id="modifyMemberButton" mnemonicParsing="false" onAction="#onModifyMemberButtonAction" prefHeight="26.0" prefWidth="144.0" text="Modifier" />
+                                    <Button fx:id="DeleteMemberButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onRemoveMemberButtonAction" prefHeight="26.0" prefWidth="146.0" text="Supprimer" />
                                  </children>
                                  <opaqueInsets>
                                     <Insets />
@@ -68,10 +67,10 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                               </VBox>
-                              <VBox alignment="CENTER" prefHeight="88.0" prefWidth="245.0" spacing="5.0" style="-fx-border-color: blue;">
+                              <VBox alignment="CENTER" prefHeight="88.0" prefWidth="245.0" spacing="5.0" style="-fx-border-color: #18473c; -fx-background-color: #18473c;">
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#onPutListeRougeButtonAction" prefHeight="26.0" prefWidth="186.0" style="-fx-background-color: #24ca24;" text="Mettre sur la liste rouge" />
-                                    <Button mnemonicParsing="false" onAction="#onRemoveFromRedListButtonAction" prefHeight="26.0" prefWidth="188.0" text="Retirer de la liste rouge" />
+                                    <Button fx:id="PutOnRedListMemberButton" mnemonicParsing="false" onAction="#onPutListeRougeButtonAction" prefHeight="26.0" prefWidth="186.0" text="Mettre sur la liste rouge" />
+                                    <Button fx:id="RemoveFromRedListMemberButton" mnemonicParsing="false" onAction="#onRemoveFromRedListButtonAction" prefHeight="26.0" prefWidth="188.0" text="Retirer de la liste rouge" />
                                  </children>
                               </VBox>
                            </children>
@@ -91,7 +90,7 @@
                   </Line>
                </children>
             </VBox>
-            <Label fx:id="tableName" prefHeight="18.0" prefWidth="125.0" style="-fx-background-color: white; -fx-border-radius: 50; -fx-border-color: #25ca25; -fx-background-radius: 50;" text="Label">
+            <Label fx:id="tableName" prefHeight="18.0" prefWidth="125.0" style="-fx-background-color: #18473c; -fx-border-radius: 50; -fx-border-color: green; -fx-background-radius: 50;" text="Label">
                <VBox.margin>
                   <Insets />
                </VBox.margin>

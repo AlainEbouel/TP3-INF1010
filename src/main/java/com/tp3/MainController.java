@@ -1,7 +1,5 @@
 package com.tp3;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,13 +7,12 @@ import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import java.io.IOException;
+
 import java.net.URL;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import client.* ;
@@ -24,6 +21,7 @@ import server.IDirectory;
 
 
 public class MainController implements Initializable {
+
     @FXML
     private Label tableName;
     @FXML
@@ -33,6 +31,18 @@ public class MainController implements Initializable {
     @FXML
     private Button rechercherButton;
     @FXML
+    private Button seConnectButton;
+    @FXML
+    private Button addMemberButton;
+    @FXML
+    private Button modifyMemberButton;
+    @FXML
+    private Button DeleteMemberButton;
+    @FXML
+    private Button PutOnRedListMemberButton;
+    @FXML
+    private Button RemoveFromRedListMemberButton;
+    @FXML
     private TextField rechecherTextField;
     @FXML
     private TextField seConnecterTextField;
@@ -40,13 +50,13 @@ public class MainController implements Initializable {
     private ChoiceBox listProfessorsChoiceBox;
     @FXML
     private BorderPane mainBorderPane;
-    @FXML
-    private Button seConnectButton;
+
 
     private ArrayList<Student> studentList;
     private ArrayList<Professor> professorList;
     private DirectoryView directoryView;
-    private  IDirectory  activeDirectory;
+    private IDirectory  activeDirectory;
+    private ArrayList<Button> buttonArrayList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -54,14 +64,16 @@ public class MainController implements Initializable {
         studentList = new ArrayList<>();
         professorList = new ArrayList<>();
         directoryView = new DirectoryView();
+        buttonArrayList = new ArrayList<>();
         try {
             directoryView.loadStudents(activeDirectory.ListAllStudents());
 
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
-//        mainBorderPane.setLeft(directoryView.getStudentTable());
+        mainBorderPane.setLeft(directoryView.getStudentTable());
         tableName.setText("Étudiants");
+        buttonStyle();
     }
 
     // Connexion au registre RMI
@@ -146,5 +158,23 @@ public class MainController implements Initializable {
         // La base de donnnees doit etre mise a jour.
     }
 
+ // Peuplement des listes
+    private void loadArraylistNode() {
+        buttonArrayList.add(listStudentButton);
+        buttonArrayList.add(rechercherButton);
+        buttonArrayList.add(seConnectButton);
+        buttonArrayList.add(addMemberButton);
+        buttonArrayList.add(modifyMemberButton);
+        buttonArrayList.add(DeleteMemberButton);
+        buttonArrayList.add(PutOnRedListMemberButton);
+        buttonArrayList.add(RemoveFromRedListMemberButton);
+    }
 
+    private void buttonStyle() {
+        loadArraylistNode();
+        for (Button button : buttonArrayList) {
+            button.setOnMouseEntered(e -> button.setStyle(" -fx-border-color: white;  -fx-text-fill: white"));
+            button.setOnMouseExited(e -> button.setStyle("-fx-border-color: #bdbbbb; -fx-text-fill: #bdbbbb "));
+        }
+    }
 }

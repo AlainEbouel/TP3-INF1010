@@ -1,0 +1,21 @@
+/*#enregistrer {*/
+/*    -fx-background-color: #669966;*/
+/*    -fx-font-size: 1.2em;*/
+/*}*/
+/*#enregistrer:hover {*/
+/*    -fx-background-color: #66bb66;*/
+/*}*/
+Button{
+    -fx-background-color: "032219FF";
+    -fx-border-color: gray;
+    -fx-border-radius: 5;
+    -fx-text-fill: #bdbbbb;
+
+}
+Label{
+    -fx-text-fill: white;
+}
+
+MenuButton {
+    -fx-text-fill: #bdbbbb;
+}
