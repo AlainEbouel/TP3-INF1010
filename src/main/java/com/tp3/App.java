@@ -97,11 +97,49 @@ Et si vous installer `mysql server` alors il y aura une étape ou in vous demand
 Le programme est fonctionnelle. IL reste simplement implémenter les 8 fonctionnalités 2 à 8, demandées dans l'énoncé du devoir.
 J'ai fait la fonctionnalité 1, donc je vous suggère de vous en inspirer pour avoir une idée de comment implémenter les autres.
 
-J'ai créé les fonctions vide,  vous devrer remplir le corps. Je vais les séparer en 3 groupes et chacun choisira:
+J'ai créé les fonctions vide,  vous devrer remplir le corps. Je vais les séparer en 3 parties et chacun choisira. Les fonctions sont dans le fichier `Maincontroller` et `DatabaseClient`
 
-groupe1:
+---------------------------------------------------------
+partie 1:
+    mainController: [
+        - OnLoginButtonAction(ActionEvent actionEvent)
+        - onAddMemberButtonAction(ActionEvent actionEvent)
+    ]
+    DatabaseClient: [
+        - addStudent(ArrayList<String> studentData)
+        - addProfessor(ArrayList<String> profData)
+        - removeMember(String registrationNumber)
+    ]
 
-Créer d'autres fonction s'il le faut.
+partie 2:
+    mainController: [
+        - OnlistProfessorContextMenuRequested(ContextMenuEvent contextMenuEvent)
+        - onModifyMemberButtonAction(ActionEvent actionEvent)
+    ]
+    DatabaseClient: [
+        - selectAllprofessors()
+        - selectProfessorsFromActivityField(String activityField)
+        - modifyStudent(ArrayList<String> studentData)
+    ]
 
-Que chacun choisisse donc le
+partie 3:
+    mainController: [
+        - onSearchMemberButtonAction(ActionEvent actionEvent)
+        - onRemoveMemberButtonAction
+        - onPutListeRougeButtonAction(ActionEvent actionEvent)
+        - onRemoveFromRedListButtonAction(ActionEvent actionEvent)
+    ]
+    DatabaseClient: [
+        - putOnRedList(String registrationNumber)
+        - removeFromRedList(String registrationNumber)
+        - modifyProfessor(ArrayList<String> profData)
+     ]
+---------------------------------------------------------
+
+Créer d'autres fonctions s'il le faut.
+
+Pour exécuter  vous devez lancer le server et le client.(Relancer les 2 lorsque vous faites des modifications.)
+
+Contactez-moi si vous avez des questions. SVP n'attendez pas la dernière minute.
+
 * */

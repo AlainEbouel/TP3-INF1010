@@ -10,31 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="662af442-1c40-4965-b325-087f3315a383" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/databaseBackups/professors.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/databaseBackups/students.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/databaseBackups/universityDB.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/server/ActiveDirectory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backup.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classDir/rmi/ActiveDirectoryServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classDir/rmi/DatabaseClient.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classDir/rmi/IDirectory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classDir/rmi/Main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tp3/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tp3/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tp3/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tp3/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/ActivityField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/ActivityField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/DirectoryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/DirectoryView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/Member.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Professor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/Professor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/Status.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rmi/ActiveDirectoryServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rmi/DatabaseClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/DatabaseClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rmi/IDirectory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/IDirectory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rmi/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/RmiServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/tp3/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/tp3/mainView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +148,8 @@
       <workItem from="1732063529269" duration="5322000" />
       <workItem from="1732069195419" duration="6114000" />
       <workItem from="1732318799593" duration="39625000" />
-      <workItem from="1732578531606" duration="16314000" />
+      <workItem from="1732578531606" duration="17395000" />
+      <workItem from="1732596065185" duration="126000" />
     </task>
     <servers />
   </component>
