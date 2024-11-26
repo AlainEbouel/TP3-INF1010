@@ -1,4 +1,4 @@
-package models;
+package client;
 
 public enum Status {
     Actif, Inactif;

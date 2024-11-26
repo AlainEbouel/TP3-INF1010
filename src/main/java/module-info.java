@@ -17,8 +17,8 @@ module com.tp3 {
 
     opens com.tp3 to javafx.fxml;
     exports com.tp3;
-    exports rmi;
-    opens rmi to javafx.fxml;
-    exports models;
-    opens models to javafx.fxml;
+    exports server;
+    opens server to javafx.fxml;
+    exports client;
+    opens client to javafx.fxml;
 }

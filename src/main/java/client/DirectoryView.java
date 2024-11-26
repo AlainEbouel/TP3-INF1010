@@ -1,30 +1,31 @@
-package models;
+package client;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 
 public class DirectoryView {
     private final TableView<Student> studentTable ;
     private final TableView<Professor> professorTable;
-    private final ObservableList<Student> studentList;
-    private final ObservableList<Professor> professorList;
-    public DirectoryView(ObservableList<Student> studentList, ObservableList<Professor> professorList) throws SQLException {
+//    private final ObservableList<Student> studentList;
+//    private final ObservableList<Professor> professorList;
+    public DirectoryView()  {
 
         this.studentTable = new TableView<>();
         this.professorTable = new TableView<>();
-        this.studentList = studentList;
-        this.professorList = professorList;
+//        this.studentList = studentList;
+//        this.professorList = professorList;
 //        pullMembers();
         tableStyle(studentTable);
         tableStyle(professorTable);
         createStudentColumns();
         createProfessorColumns();
-        loadStudents();
-        loadProfessors();
+//        loadStudents();
+//        loadProfessors();
 
 
     }
@@ -43,7 +44,7 @@ public class DirectoryView {
 //    }
     private void createStudentColumns() {
         TableColumn<Student, String> column1 = new TableColumn<>("Prénom");
-        column1.setCellValueFactory(c -> c.getValue().lastNameProperty());
+        column1.setCellValueFactory(c -> c.getValue().firstNameProperty());
         TableColumn<Student, String> column2 = new TableColumn<>("Nom");
         column2.setCellValueFactory(c -> c.getValue().lastNameProperty());
         TableColumn<Student, String> column3 = new TableColumn<>("Date de naissance");
@@ -75,18 +76,25 @@ public class DirectoryView {
         column7.setCellValueFactory(c -> c.getValue().phoneNumberProperty());
         professorTable.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7);
     }
-    private void loadStudents() {
-        for (Student student : studentList) {
-            studentTable.getItems().add(student);
+
+    public void loadStudents(ArrayList<ArrayList<String>> students) {
+        ArrayList<Student> studentList = new ArrayList<>();
+        for (ArrayList<String> list : students) {
+            studentList.add(new Student(list.get(0),list.get(1), list.get(2), list.get(3), list.get(4), list.get(5), list.get(6)));
         }
+        studentTable.getItems().setAll(studentList);
     }
-    private void loadProfessors() {
-        for (Professor professor : professorList) {
-            professorTable.getItems().add(professor);
+    public void loadProfessors(ArrayList<ArrayList<String>> professors) {
+        ArrayList<Professor> profList = new ArrayList<>();
+        for (ArrayList<String> list : professors ) {
+            System.out.println("professor: " + list.get(0) + " nom: " + list.get(1));
+            profList.add(new Professor(list.get(0),list.get(1), list.get(2), list.get(3), list.get(4), list.get(5), list.get(6), list.get(7)));
         }
+        professorTable.getItems().setAll(profList);
     }
     private void tableStyle(TableView tableView) {
         tableView.setPrefWidth(1200);
+        tableView.setStyle("-fx-background-color: #782626");
     }
 
 

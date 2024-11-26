@@ -1,21 +1,19 @@
-package models;
+package client;
 
 import javafx.beans.property.SimpleStringProperty;
 
-import java.time.LocalDate;
 import java.util.Date;
-import java.rmi.*;
 
 public class Professor extends Member{
     private final SimpleStringProperty phoneNumber;
 
-    public Professor(String firstName, String lastName, Date birthDate, String fieldActivity, String phoneNumber) {
-        super(firstName, lastName, birthDate, fieldActivity);
+    public Professor(String firstName, String lastName, String birthDate, String fieldActivity, String phoneNumber, String registrationNumber) {
+        super(firstName, lastName, birthDate, fieldActivity, registrationNumber);
         this.phoneNumber = new SimpleStringProperty(phoneNumber);
     }
 
-    public Professor(String firstName, String lastName, String email, Date birthDate, String status, String fieldActivity, String phoneNumber) {
-        super(firstName, lastName, email, birthDate, status, fieldActivity);
+    public Professor(String firstName, String lastName, String email, String birthDate, String status, String fieldActivity, String phoneNumber, String registrationNumber) {
+        super(firstName, lastName, email, birthDate, status, fieldActivity, registrationNumber);
         this.phoneNumber = new SimpleStringProperty(phoneNumber);
     }
 

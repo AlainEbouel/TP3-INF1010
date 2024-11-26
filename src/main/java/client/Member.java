@@ -1,4 +1,4 @@
-package models;
+package client;
 import javafx.beans.property.SimpleStringProperty;
 import java.util.Date;
 
@@ -9,22 +9,25 @@ public abstract class Member {
     private final SimpleStringProperty birthDate;
     private final SimpleStringProperty status;
     private final SimpleStringProperty activityField;
+    private final SimpleStringProperty registrationNumber;
 
-    public Member(String firstName, String lastName, Date birthDate, String activityField) {
+    public Member(String firstName, String lastName, String birthDate, String activityField, String registrationNumber) {
         this.lastName = new SimpleStringProperty(firstName);
         this.firstName = new SimpleStringProperty(lastName);
-        this.birthDate = new SimpleStringProperty(birthDate.toString());
+        this.birthDate = new SimpleStringProperty(birthDate);
         this.status = new SimpleStringProperty(Status.Actif.toString());
         this.email = new SimpleStringProperty(generateEmail());
         this.activityField = new SimpleStringProperty(activityField);
+        this.registrationNumber = new SimpleStringProperty(registrationNumber);
     }
-    public Member(String firstName, String lastName, String email, Date birthDate, String status, String activityField) {
-        this.lastName = new SimpleStringProperty(firstName);
-        this.firstName = new SimpleStringProperty(lastName);
-        this.birthDate = new SimpleStringProperty(birthDate.toString());
+    public Member(String firstName, String lastName, String email, String birthDate, String status, String activityField, String registrationNumber) {
+        this.firstName = new SimpleStringProperty(firstName);
+        this.lastName = new SimpleStringProperty(lastName);
+        this.birthDate = new SimpleStringProperty(birthDate);
         this.status = new SimpleStringProperty(status);
         this.email = new SimpleStringProperty(email);
         this.activityField = new SimpleStringProperty(activityField);
+        this.registrationNumber = new SimpleStringProperty(registrationNumber);
     }
 
     public SimpleStringProperty firstNameProperty() {
@@ -54,6 +57,12 @@ public abstract class Member {
     public void setEmail(String email) {
         this.email.setValue(email);
     }
+
+    public String getRegistrationNumber() {
+        return registrationNumber.get();
+    }
+
+
 
     public String getBirthDate() {
         return birthDate.get();
@@ -98,10 +107,18 @@ public abstract class Member {
     public SimpleStringProperty activityFieldProperty() {
         return activityField;
     }
+    public SimpleStringProperty registrationNumberProperty() {
+        return registrationNumber;
+    }
+    public void setRegistrationNumber(String registrationNumber) {this.registrationNumber.setValue(registrationNumber);}
 
 
     private String generateEmail()
     {
         return (firstName.getValue() + "."+ lastName.getValue() + "@uqtr.ca").toLowerCase();
+    }
+
+    private String generateRegistrationNumber(){
+        return lastName.toString().substring(0,3).toUpperCase() + firstName.toString().charAt(0) + birthDate.toString().replace("-", "");
     }
 }
