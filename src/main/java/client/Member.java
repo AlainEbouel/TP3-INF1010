@@ -1,5 +1,6 @@
 package client;
 import javafx.beans.property.SimpleStringProperty;
+
 import java.util.Date;
 
 public abstract class Member {
@@ -12,8 +13,8 @@ public abstract class Member {
     private final SimpleStringProperty registrationNumber;
 
     public Member(String firstName, String lastName, String birthDate,  String status, String activityField) {
-        this.lastName = new SimpleStringProperty(firstName);
-        this.firstName = new SimpleStringProperty(lastName);
+        this.lastName = new SimpleStringProperty(toTitleCase(lastName));
+        this.firstName = new SimpleStringProperty(toTitleCase(firstName));
         this.birthDate = new SimpleStringProperty(birthDate);
         this.status = new SimpleStringProperty(status);
         this.email = new SimpleStringProperty(generateEmail());
@@ -21,8 +22,8 @@ public abstract class Member {
         this.registrationNumber = new SimpleStringProperty(generateRegistrationNumber());
     }
     public Member(String firstName, String lastName, String email, String birthDate, String status, String activityField, String registrationNumber) {
-        this.firstName = new SimpleStringProperty(firstName);
-        this.lastName = new SimpleStringProperty(lastName);
+        this.firstName = new SimpleStringProperty(toTitleCase(firstName));
+        this.lastName = new SimpleStringProperty(toTitleCase(lastName));
         this.birthDate = new SimpleStringProperty(birthDate);
         this.status = new SimpleStringProperty(status);
         this.email = new SimpleStringProperty(email);
@@ -120,5 +121,11 @@ public abstract class Member {
 
     private String generateRegistrationNumber(){
         return lastName.getValue().substring(0,3).toUpperCase() + firstName.getValue().toUpperCase().charAt(0) + birthDate.getValue().replace("-", "");
+    }
+
+    private String toTitleCase(String word){
+        String firstChar = word.substring(0, 1).toUpperCase();
+        String rest = word.substring(1);
+        return firstChar + rest;
     }
 }
