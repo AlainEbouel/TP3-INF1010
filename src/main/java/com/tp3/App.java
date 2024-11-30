@@ -45,14 +45,6 @@ public class App extends javafx.application.Application {
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://" + databaseAddr, "root", "123456");
             Statement statement = connection.createStatement();
-//            if(statement.execute("select * from students;"))
-//            if(databaseAddr.contains("university"))
-//                try{
-//                   int  result = statement.executeQuery("select count(*) from information_schema.tables where table_schema= 'students'").getFetchSize();
-//                   System.out.println("tableExists =" + result );
-//                }
-//            catch (NullPointerException e){}
-
 
             try {
                 BufferedReader br = Files.newBufferedReader(path);

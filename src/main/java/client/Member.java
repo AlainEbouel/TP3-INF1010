@@ -11,14 +11,14 @@ public abstract class Member {
     private final SimpleStringProperty activityField;
     private final SimpleStringProperty registrationNumber;
 
-    public Member(String firstName, String lastName, String birthDate, String activityField, String registrationNumber) {
+    public Member(String firstName, String lastName, String birthDate,  String status, String activityField) {
         this.lastName = new SimpleStringProperty(firstName);
         this.firstName = new SimpleStringProperty(lastName);
         this.birthDate = new SimpleStringProperty(birthDate);
-        this.status = new SimpleStringProperty(Status.Actif.toString());
+        this.status = new SimpleStringProperty(status);
         this.email = new SimpleStringProperty(generateEmail());
         this.activityField = new SimpleStringProperty(activityField);
-        this.registrationNumber = new SimpleStringProperty(registrationNumber);
+        this.registrationNumber = new SimpleStringProperty(generateRegistrationNumber());
     }
     public Member(String firstName, String lastName, String email, String birthDate, String status, String activityField, String registrationNumber) {
         this.firstName = new SimpleStringProperty(firstName);
@@ -35,7 +35,7 @@ public abstract class Member {
     }
 
     public String getFirstName() {
-        return firstName.get();
+        return firstName.getValue();
     }
 
     public void setFirstName(String firstName) {
@@ -43,7 +43,7 @@ public abstract class Member {
     }
 
     public String getLastName() {
-        return lastName.get();
+        return lastName.getValue();
     }
 
     public void setLastName(String lastName) {
@@ -51,7 +51,7 @@ public abstract class Member {
     }
 
     public String getEmail() {
-        return email.get();
+        return email.getValue();
     }
 
     public void setEmail(String email) {
@@ -59,21 +59,21 @@ public abstract class Member {
     }
 
     public String getRegistrationNumber() {
-        return registrationNumber.get();
+        return registrationNumber.getValue();
     }
 
 
 
     public String getBirthDate() {
-        return birthDate.get();
+        return birthDate.getValue();
     }
 
     public String getStatus() {
-        return status.get();
+        return status.getValue();
     }
 
     public String getActivityField() {
-        return activityField.get();
+        return activityField.getValue();
     }
 
     public void setActivityField(String activityField) {
@@ -119,6 +119,6 @@ public abstract class Member {
     }
 
     private String generateRegistrationNumber(){
-        return lastName.toString().substring(0,3).toUpperCase() + firstName.toString().charAt(0) + birthDate.toString().replace("-", "");
+        return lastName.getValue().substring(0,3).toUpperCase() + firstName.getValue().toUpperCase().charAt(0) + birthDate.getValue().replace("-", "");
     }
 }

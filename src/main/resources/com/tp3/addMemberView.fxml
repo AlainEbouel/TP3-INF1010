@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="mainBorderPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-radius: 20; -fx-background-color: #9dba9d; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tp3.AddMemberController">
+   <left>
+      <VBox prefHeight="385.0" prefWidth="459.0" spacing="14.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="31.0" prefWidth="333.0">
+               <children>
+                  <RadioButton fx:id="studentRadioButton" mnemonicParsing="false" onAction="#onStudentRadioButtonAction" prefHeight="18.0" prefWidth="170.0" selected="true" text="Ajouter un étudiant" />
+                  <RadioButton fx:id="profRadioButton" mnemonicParsing="false" onAction="#onProfRadioButtonAction" prefHeight="18.0" prefWidth="213.0" text="Ajouter un professeur" />
+               </children>
+            </HBox>
+            <VBox prefHeight="47.0" prefWidth="333.0">
+               <children>
+                  <Label prefHeight="16.0" prefWidth="82.0" text="Prénom" />
+                  <TextField fx:id="firstnameTextField" />
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="22.0" prefWidth="333.0">
+               <children>
+                  <Label prefHeight="16.0" prefWidth="63.0" text="Nom" />
+                  <TextField fx:id="lastNameTextField" />
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="210.0" prefHeight="39.0" prefWidth="333.0">
+               <children>
+                  <Label prefHeight="16.0" prefWidth="138.0" text="Date de naissance" />
+                  <DatePicker fx:id="birthdayDatePicker" prefHeight="24.0" prefWidth="221.0" />
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="276.0" prefHeight="40.0" prefWidth="429.0">
+               <children>
+                  <Label />
+                  <MenuButton fx:id="menuButtonActivityField" mnemonicParsing="false"  prefHeight="24.0" prefWidth="222.0" text="Domaine d'activité">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                      <MenuItem mnemonicParsing="false" text="Action 2" />
+                    </items>
+                  </MenuButton>
+               </children>
+            </VBox>
+            <VBox fx:id="phoneNumberVBox" layoutX="10.0" layoutY="276.0" prefHeight="40.0" prefWidth="429.0" visible="false">
+               <children>
+                  <Label text="Numéro de téléphone" />
+                  <TextField fx:id="phoneNumberTextField" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="15.0" right="15.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets top="15.0" />
+         </BorderPane.margin>
+      </VBox>
+   </left>
+   <center>
+      <RadioButton fx:id="statusRadioButton" mnemonicParsing="false" selected="true" text="Actif" BorderPane.alignment="CENTER" />
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#onDeleteAllButtonAction" prefHeight="24.0" prefWidth="125.0" style="-fx-background-color: #c62e2e;" text="Effacer tout">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" onAction="#onCreateButtonAction" prefHeight="24.0" prefWidth="205.0" style="-fx-background-color: green;" text="Créer">
+               <font>
+                  <Font name="DejaVuMathTeXGyre-Regular" size="30.0" />
+               </font></Button>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

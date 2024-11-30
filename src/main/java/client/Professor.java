@@ -7,8 +7,8 @@ import java.util.Date;
 public class Professor extends Member{
     private final SimpleStringProperty phoneNumber;
 
-    public Professor(String firstName, String lastName, String birthDate, String fieldActivity, String phoneNumber, String registrationNumber) {
-        super(firstName, lastName, birthDate, fieldActivity, registrationNumber);
+    public Professor(String firstName, String lastName, String birthDate, String status, String activityField, String phoneNumber) {
+        super(firstName, lastName, birthDate, status, activityField);
         this.phoneNumber = new SimpleStringProperty(phoneNumber);
     }
 

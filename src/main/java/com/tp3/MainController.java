@@ -1,27 +1,46 @@
 package com.tp3;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.Scene;
 
+import java.io.IOException;
 import java.net.URL;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import client.* ;
 import client.DirectoryView;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import server.IDirectory;
 
 
 public class MainController implements Initializable {
 
+
+    @FXML
+    private MenuButton themesMenuButton;
+    @FXML
+    private VBox nodeSearch;
+    @FXML
+    private VBox nodeAdmin;
+    @FXML
+    private VBox nodeAddModSup;
+    @FXML
+    private VBox nodeRedList;
     @FXML
     private Label tableName;
     @FXML
@@ -37,67 +56,98 @@ public class MainController implements Initializable {
     @FXML
     private Button modifyMemberButton;
     @FXML
-    private Button DeleteMemberButton;
+    private Button deleteMemberButton;
     @FXML
-    private Button PutOnRedListMemberButton;
+    private Button putOnRedListMemberButton;
     @FXML
-    private Button RemoveFromRedListMemberButton;
+    private Button removeFromRedListMemberButton;
     @FXML
     private TextField rechecherTextField;
     @FXML
-    private TextField seConnecterTextField;
+    private PasswordField seConnecterPasswordField;;
     @FXML
     private ChoiceBox listProfessorsChoiceBox;
     @FXML
     private BorderPane mainBorderPane;
 
 
+    private boolean adminConnected;
+    private String adminPass = "uqtr";
     private ArrayList<Student> studentList;
     private ArrayList<Professor> professorList;
-    private DirectoryView directoryView;
+//    private DirectoryView directoryView;
     private IDirectory  activeDirectory;
     private ArrayList<Button> buttonArrayList;
+    private ArrayList<Node> nodeArrayList;
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         rmiConnect();
+        adminConnected = false;
         studentList = new ArrayList<>();
         professorList = new ArrayList<>();
-        directoryView = new DirectoryView();
+//        directoryView = new DirectoryView();
+        DirectoryView.initDirectoryView();
         buttonArrayList = new ArrayList<>();
-        try {
-            directoryView.loadStudents(activeDirectory.ListAllStudents());
+        nodeArrayList = new ArrayList<>();
 
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-        mainBorderPane.setLeft(directoryView.getStudentTable());
-        tableName.setText("Étudiants");
+        loadStudents();
         buttonStyle();
     }
 
-    // Connexion au registre RMI
-    private void rmiConnect(){
-        try {
-            Registry registry = LocateRegistry.getRegistry();
-            activeDirectory = (IDirectory) registry.lookup("ActiveDirectory");
-        } catch (RemoteException | NotBoundException e) {
-            System.out.println("Caught not bound exception in Controller");
-        }
-    }
+
 
     // Connexion de l'administrateur
     @FXML
-    private void OnLoginButtonAction(ActionEvent actionEvent) throws RemoteException {
-        /*TODO*/
+    private void onLoginButtonAction(ActionEvent actionEvent) throws RemoteException {
+
+        if(!adminConnected)
+        {
+//            if (!Objects.equals(seConnecterPasswordField.getText(), adminPass)) {
+            if(false){
+            new Alert(Alert.AlertType.ERROR, "Mot de passe incorrect!").show();
+            }
+            else {
+                seConnecterPasswordField.setVisible(false);
+                seConnectButton.setText("Déconnexion");
+                adminConnected = true;
+                seConnecterPasswordField.setDisable(true);
+                putOnRedListMemberButton.setVisible(true);
+                removeFromRedListMemberButton.setVisible(true);
+                addMemberButton.setVisible(true);
+                modifyMemberButton.setVisible(true);
+                deleteMemberButton.setVisible(true);
+            }
+            seConnecterPasswordField.clear();
+        }
+        else {
+            Alert  alert  = new Alert(Alert.AlertType.CONFIRMATION, "Confirmez que Vous souhaitez vous déconnecter!");
+            if (Objects.equals(alert.showAndWait().get().getButtonData().toString(), "OK_DONE")) {
+                seConnectButton.setText("Connexion");
+                seConnecterPasswordField.setDisable(false);
+                seConnecterPasswordField.setVisible(true);
+                adminConnected = false;
+                putOnRedListMemberButton.setVisible(false);
+                removeFromRedListMemberButton.setVisible(false);
+                addMemberButton.setVisible(false);
+                modifyMemberButton.setVisible(false);
+                deleteMemberButton.setVisible(false);
+            }
+        }
+    }
+    @FXML
+    private void onEnterPasswordFieldPressed(KeyEvent keyEvent) throws RemoteException {
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            onLoginButtonAction(new ActionEvent());
+        }
     }
 
     // Lister tous les etudiants
     @FXML
     private void onListStudentButtonAction(ActionEvent actionEvent) throws RemoteException {
-        directoryView.loadStudents(activeDirectory.ListAllStudents());
-        mainBorderPane.setLeft(directoryView.getStudentTable());
-        tableName.setText("Étudiants");
+        loadStudents();
     }
 
     // Lister tous les professeurs ou uniquement ceux d'une catégorie
@@ -120,11 +170,15 @@ public class MainController implements Initializable {
 
     // Ajouter un etudiant ou un prof
     @FXML
-    private void onAddMemberButtonAction(ActionEvent actionEvent) throws RemoteException {
-        /* TODO */
-        // Cette méthode doit lancer une fenêtre, pour saisir les informations du membre à créer
-        // L'ajout doit être communiqué à la vue principale(TableView) et à la base de donnée(`univertisy` database).
-
+    private void onAddMemberButtonAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("addMemberView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 440);
+        Stage stage = new Stage();
+        stage.setTitle("Ajouter un nouveau membre!");
+        stage.setScene(scene);
+        stage.show();
+        loadStudents();
+        DirectoryView.getStudentTable().refresh();
     }
 
     @FXML
@@ -138,9 +192,13 @@ public class MainController implements Initializable {
 
     @FXML
     private void onRemoveMemberButtonAction(ActionEvent actionEvent) {
-        /* TODO */
-        //Cette méthode supprime le membre (Étudiant ou professeur ) sélectionné dans le vue principale(TableView)
-        // La suppression doit être faite à la fois dans la vue principale(TableView) et dans la base de donnée(`univertisy` database).
+        TableView.TableViewSelectionModel selectionModel =  DirectoryView.getStudentTable().getSelectionModel();
+        System.out.println("Selected: " +  ((Student)selectionModel.getSelectedItem()).getFirstName());
+//        if(deleteMemberButton.isDisabled()){
+//            deleteMemberButton.setDisable(false);
+//            Alert alert = new Alert(Alert.AlertType.WARNING, "Veuillez d'abord sélectionner un membre svp!");
+//            alert.show();
+//        }
     }
 
     @FXML
@@ -157,6 +215,56 @@ public class MainController implements Initializable {
         //Cette méthode retire un membre de la liste rouge(Inactif =>Actif)
         // La base de donnnees doit etre mise a jour.
     }
+    @FXML
+    private void onThemesContextMenuRequested(ContextMenuEvent contextMenuEvent) {
+        System.out.println("theme2");
+        System.out.println("onThemesContextMenuRequested: " + themesMenuButton.getText());
+        System.out.println("onThemesContextMenuRequested: " + themesMenuButton.getOnAction().toString());
+        System.out.println("onThemesMenuButtonAction: " + ((MenuItem)contextMenuEvent.getSource()).getText());
+        EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                System.out.println(((MenuItem)e.getSource()).getText() + " selected");
+            }
+        };
+        System.out.println(((MenuItem)contextMenuEvent.getSource()).getText() + " selected");
+    }
+    public void onThemesMenuButtonAction(ActionEvent actionEvent) {
+        System.out.println("onThemesMenuButtonAction theme");
+        System.out.println("onThemesMenuButtonAction: " + themesMenuButton.getOnAction().toString());
+        System.out.println("onThemesMenuButtonAction: " + ((MenuItem)actionEvent.getSource()).getText());
+        EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                System.out.println(((MenuItem)e.getSource()).getText() + " selected");
+                System.out.println(((MenuItem)actionEvent.getSource()).getText() + " selected");
+            }
+        };
+    }
+
+
+    public void onThemesMouseClicked(MouseEvent mouseEvent) {
+        System.out.println("onThemesMenuButtonAction theme");
+        System.out.println("onThemesMenuButtonAction: " + themesMenuButton.getOnContextMenuRequested().toString());
+//        System.out.println("onThemesMenuButtonAction: " + ((MenuItem)mouseEvent.getSource()).getText());
+        EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                System.out.println(((MenuItem)e.getSource()).getText() + " selected");
+            }
+        };
+
+    }
+
+    // Connexion au registre RMI
+    private void rmiConnect(){
+        try {
+            Registry registry = LocateRegistry.getRegistry();
+            activeDirectory = (IDirectory) registry.lookup("ActiveDirectory");
+        } catch (RemoteException | NotBoundException e) {
+            System.out.println("Caught not bound exception in Controller");
+        }
+    }
 
  // Peuplement des listes
     private void loadArraylistNode() {
@@ -165,9 +273,23 @@ public class MainController implements Initializable {
         buttonArrayList.add(seConnectButton);
         buttonArrayList.add(addMemberButton);
         buttonArrayList.add(modifyMemberButton);
-        buttonArrayList.add(DeleteMemberButton);
-        buttonArrayList.add(PutOnRedListMemberButton);
-        buttonArrayList.add(RemoveFromRedListMemberButton);
+        buttonArrayList.add(deleteMemberButton);
+        buttonArrayList.add(putOnRedListMemberButton);
+        buttonArrayList.add(removeFromRedListMemberButton);
+        nodeArrayList.add(nodeAdmin);
+        nodeArrayList.add(nodeAddModSup);
+        nodeArrayList.add(nodeRedList);
+        nodeArrayList.add(nodeSearch);
+    }
+
+    private void loadStudents(){
+        try {
+            DirectoryView.loadStudents(activeDirectory.ListAllStudents());
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+        mainBorderPane.setLeft(DirectoryView.getStudentTable());
+        tableName.setText("Étudiants");
     }
 
     private void buttonStyle() {
@@ -177,4 +299,6 @@ public class MainController implements Initializable {
             button.setOnMouseExited(e -> button.setStyle("-fx-border-color: #bdbbbb; -fx-text-fill: #bdbbbb "));
         }
     }
+
+
 }

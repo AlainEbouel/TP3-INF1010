@@ -72,8 +72,21 @@ public class DatabaseClient {
         return null;
     }
     public static void addStudent(ArrayList<String> studentData) {
-        /*TODO */
-        // Cette meéthode insert un nouvel étudiant dans la base de données
+       connect();
+        try {
+            System.out.println(studentData.get(0));
+            System.out.println(studentData.get(1));
+            System.out.println(studentData.get(2));
+            System.out.println(studentData.get(3));
+            System.out.println(studentData.get(4));
+            System.out.println(studentData.get(5));
+            System.out.println(studentData.get(6));
+            statement.execute("INSERT INTO `students` (`first_name`, `last_name`, `email`, `birthdate`, `status`, `activityField`, `registration_number`) VALUES\n" +
+                    "( '" + studentData.get(0) + "', '" + studentData.get(1) + "', '" + studentData.get(2) + "', '" + studentData.get(3) +
+                    "', '" + studentData.get(4) + "', '" + studentData.get(5) + "', '" + studentData.get(6) + "');");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     public static void addProfessor(ArrayList<String> profData) {
         /*TODO */

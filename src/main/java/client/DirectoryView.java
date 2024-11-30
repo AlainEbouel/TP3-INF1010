@@ -9,14 +9,14 @@ import java.util.ArrayList;
 
 
 public class DirectoryView {
-    private final TableView<Student> studentTable ;
-    private final TableView<Professor> professorTable;
+    private static final TableView<Student> studentTable = new TableView<>();;
+    private static final TableView<Professor> professorTable = new TableView<>();;
 //    private final ObservableList<Student> studentList;
 //    private final ObservableList<Professor> professorList;
-    public DirectoryView()  {
+    public static void initDirectoryView()  {
 
-        this.studentTable = new TableView<>();
-        this.professorTable = new TableView<>();
+//        studentTable = new TableView<>();
+//        professorTable = new TableView<>();
 //        this.studentList = studentList;
 //        this.professorList = professorList;
 //        pullMembers();
@@ -30,11 +30,11 @@ public class DirectoryView {
 
     }
 
-    public TableView<Student> getStudentTable() {
+    public static TableView<Student> getStudentTable() {
         return studentTable;
     }
 
-    public TableView<Professor> getProfessorTable() {
+    public static TableView<Professor> getProfessorTable() {
         return professorTable;
     }
 //    public void pullMembers() throws SQLException {
@@ -42,7 +42,7 @@ public class DirectoryView {
 //        dbClient.selectAllProfesssors(professorList);
 //        dbClient.selectAllStudents(studentList);
 //    }
-    private void createStudentColumns() {
+    private static void createStudentColumns() {
         TableColumn<Student, String> column1 = new TableColumn<>("Prénom");
         column1.setCellValueFactory(c -> c.getValue().firstNameProperty());
         TableColumn<Student, String> column2 = new TableColumn<>("Nom");
@@ -59,7 +59,7 @@ public class DirectoryView {
         column7.setCellValueFactory(c -> c.getValue().registrationNumberProperty());
         studentTable.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7);
     }
-    private void createProfessorColumns() {
+    private static void createProfessorColumns() {
         TableColumn<Professor, String> column1 = new TableColumn<>("Prénom");
         column1.setCellValueFactory(c -> c.getValue().firstNameProperty());
         TableColumn<Professor, String> column2 = new TableColumn<>("Nom");
@@ -77,13 +77,14 @@ public class DirectoryView {
         professorTable.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7);
     }
 
-    public void loadStudents(ArrayList<ArrayList<String>> students) {
+    public static void loadStudents(ArrayList<ArrayList<String>> students) {
         ArrayList<Student> studentList = new ArrayList<>();
         for (ArrayList<String> list : students) {
             studentList.add(new Student(list.get(0),list.get(1), list.get(2), list.get(3), list.get(4), list.get(5), list.get(6)));
         }
         studentTable.getItems().setAll(studentList);
     }
+
     public void loadProfessors(ArrayList<ArrayList<String>> professors) {
         ArrayList<Professor> profList = new ArrayList<>();
         for (ArrayList<String> list : professors ) {
@@ -92,7 +93,7 @@ public class DirectoryView {
         }
         professorTable.getItems().setAll(profList);
     }
-    private void tableStyle(TableView tableView) {
+    private static void tableStyle(TableView tableView) {
         tableView.setPrefWidth(1200);
         tableView.setStyle("-fx-background-color: #782626");
     }
