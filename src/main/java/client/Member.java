@@ -128,4 +128,5 @@ public abstract class Member {
         String rest = word.substring(1);
         return firstChar + rest;
     }
+
 }

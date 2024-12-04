@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.tp3.ModifyMemberController" style="-fx-background-color: #9dba9d;">
+    <!-- Titre -->
+    <top>
+        <Label text="Modifier un membre"
+               style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white; -fx-padding: 10;"
+               BorderPane.alignment="CENTER" />
+    </top>
+
+    <!-- Formulaire principal -->
+    <center>
+        <GridPane hgap="20" vgap="15" style="-fx-padding: 20; -fx-background-color: #9dba9d; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: white; -fx-border-width: 2;">
+            <!-- Prénom -->
+            <Label text="Prénom :" style="-fx-text-fill: white;" />
+            <TextField fx:id="firstNameField" GridPane.columnIndex="1" />
+
+            <!-- Nom -->
+            <Label text="Nom :" style="-fx-text-fill: white;" GridPane.rowIndex="1" />
+            <TextField fx:id="lastNameField" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+            <!-- Email -->
+            <Label text="Email :" style="-fx-text-fill: white;" GridPane.rowIndex="2" />
+            <TextField fx:id="emailField" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+            <!-- Date de naissance -->
+            <Label text="Date de naissance :" style="-fx-text-fill: white;" GridPane.rowIndex="3" />
+            <DatePicker fx:id="birthDateField" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+
+            <!-- Statut -->
+            <Label text="Statut :" style="-fx-text-fill: white;" GridPane.rowIndex="4" />
+            <ChoiceBox fx:id="statusChoiceBox" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+
+            <!-- Domaine d'activité -->
+            <Label text="Domaine :" style="-fx-text-fill: white;" GridPane.rowIndex="5" />
+            <TextField fx:id="activityField" GridPane.rowIndex="5" GridPane.columnIndex="1" />
+
+            <!-- Téléphone (si professeur) -->
+            <Label text="Téléphone (Professeur) :" style="-fx-text-fill: white;" GridPane.rowIndex="6" />
+            <TextField fx:id="phoneNumberField" GridPane.rowIndex="6" GridPane.columnIndex="1" />
+        </GridPane>
+    </center>
+
+    <!-- Boutons d'action -->
+    <bottom>
+        <HBox spacing="15" alignment="CENTER" style="-fx-padding: 20; -fx-background-color: #9dba9d;">
+            <Button text="Enregistrer"
+                    style="-fx-background-color: #2e8b57; -fx-text-fill: white; -fx-font-weight: bold;"
+                    onAction="#onSaveButtonAction" />
+            <Button text="Annuler"
+                    style="-fx-background-color: #b22222; -fx-text-fill: white; -fx-font-weight: bold;"
+                    onAction="#onCancelButtonAction" />
+        </HBox>
+    </bottom>
+</BorderPane>

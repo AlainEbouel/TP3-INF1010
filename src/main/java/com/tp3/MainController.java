@@ -80,6 +80,15 @@ public class MainController implements Initializable {
     private ArrayList<Button> buttonArrayList;
     private ArrayList<Node> nodeArrayList;
 
+    private void initializeChoiceBox() {
+        ArrayList<String> domains = new ArrayList<>();
+        domains.add("Tous les professeurs"); // Option par défaut
+        for (ActivityField field : ActivityField.getActivityFields()) {
+            domains.add(field.getField());
+        }
+        listProfessorsChoiceBox.getItems().setAll(domains);
+        listProfessorsChoiceBox.getSelectionModel().select("Tous les professeurs"); // Valeur par défaut
+    }
 
 
     @Override
@@ -95,6 +104,8 @@ public class MainController implements Initializable {
 
         loadStudents();
         buttonStyle();
+        // Initialisation de la ChoiceBox des domaines d'activité
+        initializeChoiceBox();
     }
 
 
@@ -152,11 +163,40 @@ public class MainController implements Initializable {
 
     // Lister tous les professeurs ou uniquement ceux d'une catégorie
     @FXML
-    private void OnlistProfessorContextMenuRequested(ContextMenuEvent contextMenuEvent) {
+    private void OnlistProfessorContextMenuRequested(ActionEvent actionEvent) {
         /* TODO */
         // Cette méthode affiche  les professeurs d'un domaine precis ou  tous les professeurs
         // Prévoir une étiquette `Tous les professeurs` dans la liste de la ChoiceBox
         // Cette méthode doit toujours tirer ces donnée depuis la base de donnees.
+        try {
+            // Récupération du domaine sélectionné dans la ChoiceBox
+            String selectedDomain = (String) listProfessorsChoiceBox.getSelectionModel().getSelectedItem();
+
+            // Vérification du choix (Tous les professeurs ou un domaine spécifique)
+            ArrayList<ArrayList<String>> professors;
+            if ("Tous les professeurs".equals(selectedDomain)) {
+                // Appel au service pour récupérer tous les professeurs
+                professors = activeDirectory.listProfessors();
+            } else {
+                // Appel au service pour récupérer les professeurs d'un domaine précis
+                professors = activeDirectory.listProfessorsFromActivityField(selectedDomain);
+            }
+
+            // Chargement des professeurs dans la vue
+            DirectoryView.loadProfessors(professors);
+
+            // Mise à jour de l'affichage dans l'interface
+            mainBorderPane.setLeft(DirectoryView.getProfessorTable());
+            tableName.setText("Professeurs (" + (selectedDomain.equals("Tous les professeurs") ? "Tous" : selectedDomain) + ")");
+        } catch (RemoteException e) {
+            // Gestion des erreurs RMI
+            new Alert(Alert.AlertType.ERROR, "Erreur lors de la récupération des professeurs : " + e.getMessage()).show();
+            e.printStackTrace();
+        } catch (Exception e) {
+            // Gestion des autres erreurs
+            new Alert(Alert.AlertType.ERROR, "Erreur inattendue : " + e.getMessage()).show();
+            e.printStackTrace();
+        }
     }
 
     //Rechercher un membre (Etudiant ou prof)
@@ -188,6 +228,42 @@ public class MainController implements Initializable {
         // Ensuite, on doit pouvoir modifier un ou plusieurs champs et enrégistrer.
         // La modification doit être communiquée à la vue principale(TableView) et à la base de donnée(`univertisy` database).
         // Il faut uniquement traiter les informations qui ont changé
+        try {
+            // Vérifiez si un membre est sélectionné dans la TableView
+            TableView.TableViewSelectionModel selectionModel = DirectoryView.getStudentTable().getSelectionModel();
+            Object selectedMember = selectionModel.getSelectedItem();
+
+            if (selectedMember == null) {
+                new Alert(Alert.AlertType.WARNING, "Veuillez sélectionner un membre à modifier !").show();
+                return;
+            }
+
+            // Charger la vue modifyMemberView
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("modifyMemberView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 600, 440);
+            Stage stage = new Stage();
+            stage.setTitle("Modifier un membre");
+
+            // Passez les données du membre sélectionné au contrôleur
+            ModifyMemberController controller = fxmlLoader.getController();
+            if (selectedMember instanceof Student) {
+                controller.setMemberData((Student) selectedMember);
+            } else if (selectedMember instanceof Professor) {
+                controller.setMemberData((Professor) selectedMember);
+            }
+
+            // Afficher la fenêtre
+            stage.setScene(scene);
+            stage.showAndWait();
+
+            // Rafraîchir la vue principale après modification
+            loadStudents();
+            DirectoryView.getStudentTable().refresh();
+
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR, "Erreur lors du chargement de la fenêtre de modification : " + e.getMessage()).show();
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -291,6 +367,7 @@ public class MainController implements Initializable {
         mainBorderPane.setLeft(DirectoryView.getStudentTable());
         tableName.setText("Étudiants");
     }
+
 
     private void buttonStyle() {
         loadArraylistNode();

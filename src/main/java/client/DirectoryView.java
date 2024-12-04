@@ -85,7 +85,7 @@ public class DirectoryView {
         studentTable.getItems().setAll(studentList);
     }
 
-    public void loadProfessors(ArrayList<ArrayList<String>> professors) {
+    public static void loadProfessors(ArrayList<ArrayList<String>> professors) {
         ArrayList<Professor> profList = new ArrayList<>();
         for (ArrayList<String> list : professors ) {
             System.out.println("professor: " + list.get(0) + " nom: " + list.get(1));

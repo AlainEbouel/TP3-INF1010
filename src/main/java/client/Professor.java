@@ -1,6 +1,7 @@
 package client;
 
 import javafx.beans.property.SimpleStringProperty;
+import java.util.ArrayList;
 
 import java.util.Date;
 
@@ -29,4 +30,18 @@ public class Professor extends Member{
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber.setValue(phoneNumber);
     }
+
+    public ArrayList<String> memberData() {
+        ArrayList<String> data = new ArrayList<>();
+        data.add(getFirstName());
+        data.add(getLastName());
+        data.add(getEmail());
+        data.add(getBirthDate());
+        data.add(getStatus());
+        data.add(getActivityField());
+        data.add(getPhoneNumber()); // Champ spécifique au professeur
+        data.add(getRegistrationNumber());
+        return data;
+    }
+
 }

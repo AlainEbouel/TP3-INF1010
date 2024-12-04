@@ -23,6 +23,11 @@
                   </MenuButton>
                </children>
             </VBox>
+            <VBox alignment="CENTER" spacing="10">
+               <Label text="Filtrer par domaine" />
+               <ChoiceBox fx:id="listProfessorsChoiceBox" prefWidth="200" />
+               <Button text="Afficher les professeurs" onAction="#OnlistProfessorContextMenuRequested" />
+            </VBox>
             <VBox prefHeight="62.0" prefWidth="188.0" spacing="5.0">
                <children>
                   <TextField fx:id="rechecherTextField" prefHeight="24.0" prefWidth="188.0" />
@@ -83,7 +88,7 @@
                               <VBox fx:id="nodeAddModSup" alignment="CENTER" prefHeight="88.0" prefWidth="196.0" spacing="5.0" style="-fx-border-color: #18473c; -fx-background-color: #18473c;">
                                  <children>
                                     <Button fx:id="addMemberButton" mnemonicParsing="false" onAction="#onAddMemberButtonAction" prefHeight="26.0" prefWidth="143.0" text="Ajouter" visible="false" />
-                                    <Button fx:id="modifyMemberButton" disable="true" mnemonicParsing="false" onAction="#onModifyMemberButtonAction" prefHeight="26.0" prefWidth="144.0" text="Modifier" visible="false" />
+                                    <Button fx:id="modifyMemberButton"  mnemonicParsing="false" onAction="#onModifyMemberButtonAction" prefHeight="26.0" prefWidth="144.0" text="Modifier" visible="false" />
                                     <Button fx:id="deleteMemberButton" disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onRemoveMemberButtonAction" prefHeight="26.0" prefWidth="146.0" text="Supprimer" visible="false" />
                                  </children>
                                  <opaqueInsets>
