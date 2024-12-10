@@ -1,6 +1,7 @@
 package client;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public abstract class Member {
@@ -30,6 +31,9 @@ public abstract class Member {
         this.activityField = new SimpleStringProperty(activityField);
         this.registrationNumber = new SimpleStringProperty(registrationNumber);
     }
+
+    // Définir memberData comme méthode abstraite
+    public abstract ArrayList<String> memberData();
 
     public SimpleStringProperty firstNameProperty() {
         return firstName;
@@ -119,8 +123,14 @@ public abstract class Member {
         return (firstName.getValue() + "."+ lastName.getValue() + "@uqtr.ca").toLowerCase();
     }
 
-    private String generateRegistrationNumber(){
-        return lastName.getValue().substring(0,3).toUpperCase() + firstName.getValue().toUpperCase().charAt(0) + birthDate.getValue().replace("-", "");
+    private String generateRegistrationNumber() {
+        if (this.registrationNumber != null && !this.registrationNumber.getValue().isEmpty()) {
+            // Retournez le numéro d'enregistrement existant si déjà défini
+            return this.registrationNumber.getValue();
+        }
+        return lastName.getValue().substring(0, 3).toUpperCase()
+                + firstName.getValue().toUpperCase().charAt(0)
+                + birthDate.getValue().replace("-", "");
     }
 
     private String toTitleCase(String word){

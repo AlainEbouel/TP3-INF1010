@@ -37,7 +37,7 @@
 
             <!-- Domaine d'activité -->
             <Label text="Domaine :" style="-fx-text-fill: white;" GridPane.rowIndex="5" />
-            <TextField fx:id="activityField" GridPane.rowIndex="5" GridPane.columnIndex="1" />
+            <ChoiceBox fx:id="activityFieldChoiceBox" GridPane.rowIndex="5" GridPane.columnIndex="1" />
 
             <!-- Téléphone (si professeur) -->
             <Label text="Téléphone (Professeur) :" style="-fx-text-fill: white;" GridPane.rowIndex="6" />

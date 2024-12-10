@@ -1,5 +1,6 @@
 package com.tp3;
 
+import client.ActivityField;
 import client.Member;
 import client.Student;
 import client.Professor;
@@ -25,7 +26,7 @@ public class ModifyMemberController {
     @FXML
     private ChoiceBox<String> statusChoiceBox;
     @FXML
-    private TextField activityField;
+    private ChoiceBox<String> activityFieldChoiceBox;
     @FXML
     private TextField phoneNumberField;
 
@@ -40,7 +41,10 @@ public class ModifyMemberController {
             System.out.println("Erreur de connexion RMI : " + e.getMessage());
         }
 
-        statusChoiceBox.getItems().addAll("Actif", "Inactif");
+        // Initialisation des domaines dans la ChoiceBox
+        for (ActivityField field : ActivityField.values()) {
+            activityFieldChoiceBox.getItems().add(field.getField());
+        }
     }
 
     public void setMemberData(Member member) {
@@ -50,8 +54,7 @@ public class ModifyMemberController {
         emailField.setText(member.getEmail());
         birthDateField.setValue(java.time.LocalDate.parse(member.getBirthDate()));
         statusChoiceBox.setValue(member.getStatus());
-        activityField.setText(member.getActivityField());
-
+        activityFieldChoiceBox.setValue(member.getActivityField()); // Remplacez le champ texte par une sélection
         if (member instanceof Professor) {
             phoneNumberField.setVisible(true);
             phoneNumberField.setText(((Professor) member).getPhoneNumber());
@@ -60,24 +63,27 @@ public class ModifyMemberController {
         }
     }
 
+
     @FXML
     private void onSaveButtonAction() {
         try {
+            // Affichez les anciennes données
+            System.out.println("Données avant modification : " + memberToModify.memberData());
             memberToModify.setFirstName(firstNameField.getText());
             memberToModify.setLastName(lastNameField.getText());
             memberToModify.setEmail(emailField.getText());
             memberToModify.setBirthDate(birthDateField.getValue().toString());
             memberToModify.setStatus(statusChoiceBox.getValue());
-            memberToModify.setActivityField(activityField.getText());
+            memberToModify.setActivityField(activityFieldChoiceBox.getValue()); // Récupérez la sélection
+
+            // Affichez les nouvelles données
+            System.out.println("Données après modification : " + memberToModify.memberData());
 
             if (memberToModify instanceof Professor) {
                 ((Professor) memberToModify).setPhoneNumber(phoneNumberField.getText());
-            }
-
-            if (memberToModify instanceof Student) {
-                activeDirectory.modifyStudent(((Student) memberToModify).memberData());
-            } else if (memberToModify instanceof Professor) {
                 activeDirectory.modifyProfessor(((Professor) memberToModify).memberData());
+            } else if (memberToModify instanceof Student) {
+                activeDirectory.modifyStudent(((Student) memberToModify).memberData());
             }
 
             new Alert(Alert.AlertType.INFORMATION, "Membre modifié avec succès !").show();

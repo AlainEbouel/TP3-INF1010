@@ -155,6 +155,9 @@ public class DatabaseClient {
             pstmt.setString(6, studentData.get(5)); // activityField
             pstmt.setString(7, studentData.get(6)); // registration_number (identifiant unique)
 
+            // Afficher la requête SQL générée
+            System.out.println("Requête SQL : " + pstmt.toString());
+
             // Exécuter la requête
             int rowsAffected = pstmt.executeUpdate();
 
@@ -177,6 +180,36 @@ public class DatabaseClient {
     public static void modifyProfessor(ArrayList<String> profData) {
         /*TODO */
         // Cette méthode modifie 1 ou plusieurs attributs d'un professor dans la base de données
+        connect();
+        try {
+            String sql = "UPDATE professors SET first_name = ?, last_name = ?, email = ?, birthdate = ?, status = ?, activityField = ?, phone_number = ? WHERE registration_number = ?";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+
+            // Remplir les paramètres
+            pstmt.setString(1, profData.get(0)); // first_name
+            pstmt.setString(2, profData.get(1)); // last_name
+            pstmt.setString(3, profData.get(2)); // email
+            pstmt.setString(4, profData.get(3)); // birthdate
+            pstmt.setString(5, profData.get(4)); // status
+            pstmt.setString(6, profData.get(5)); // activityField
+            pstmt.setString(7, profData.get(6)); // phone_number
+            pstmt.setString(8, profData.get(7)); // registration_number (clé primaire)
+
+            System.out.println("Requête SQL : " + pstmt.toString());
+
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Professeur modifié avec succès !");
+            } else {
+                System.out.println("Aucun professeur trouvé avec ce numéro d'enregistrement.");
+            }
+
+            pstmt.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la modification du professeur : " + e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
     public static void removeMember(String registrationNumber) {
         /*TODO */
