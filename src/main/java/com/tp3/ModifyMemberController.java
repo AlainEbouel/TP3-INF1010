@@ -54,14 +54,16 @@ public class ModifyMemberController {
         emailField.setText(member.getEmail());
         birthDateField.setValue(java.time.LocalDate.parse(member.getBirthDate()));
         statusChoiceBox.setValue(member.getStatus());
-        activityFieldChoiceBox.setValue(member.getActivityField()); // Remplacez le champ texte par une sélection
-        if (member instanceof Professor) {
-            phoneNumberField.setVisible(true);
+        if (member instanceof Student) {
+            activityFieldChoiceBox.setValue(((Student) member).getActivityField());
+            phoneNumberField.setVisible(false); // Les étudiants n'ont pas de téléphone
+        } else if (member instanceof Professor) {
+            activityFieldChoiceBox.setValue(((Professor) member).getActivityField());
             phoneNumberField.setText(((Professor) member).getPhoneNumber());
-        } else {
-            phoneNumberField.setVisible(false);
+            phoneNumberField.setVisible(true);
         }
     }
+
 
 
     @FXML

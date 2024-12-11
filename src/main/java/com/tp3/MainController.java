@@ -223,28 +223,31 @@ public class MainController implements Initializable {
 
     @FXML
     private void onModifyMemberButtonAction(ActionEvent actionEvent) {
-        /* TODO */
-        // Cette méthode doit lancer une fenêtre affichant les informations de l'étudiant ou du prof sélectionné.
-        // Ensuite, on doit pouvoir modifier un ou plusieurs champs et enrégistrer.
-        // La modification doit être communiquée à la vue principale(TableView) et à la base de donnée(`univertisy` database).
-        // Il faut uniquement traiter les informations qui ont changé
         try {
-            // Vérifiez si un membre est sélectionné dans la TableView
-            TableView.TableViewSelectionModel selectionModel = DirectoryView.getStudentTable().getSelectionModel();
-            Object selectedMember = selectionModel.getSelectedItem();
+            Object selectedMember = null;
 
+            // Vérifiez si un étudiant est sélectionné
+            if (DirectoryView.getStudentTable().getSelectionModel().getSelectedItem() != null) {
+                selectedMember = DirectoryView.getStudentTable().getSelectionModel().getSelectedItem();
+            }
+            // Sinon, vérifiez si un professeur est sélectionné
+            else if (DirectoryView.getProfessorTable().getSelectionModel().getSelectedItem() != null) {
+                selectedMember = DirectoryView.getProfessorTable().getSelectionModel().getSelectedItem();
+            }
+
+            // Si aucun membre n'est sélectionné, affichez un avertissement
             if (selectedMember == null) {
                 new Alert(Alert.AlertType.WARNING, "Veuillez sélectionner un membre à modifier !").show();
                 return;
             }
 
-            // Charger la vue modifyMemberView
+            // Ouvrir la fenêtre de modification
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("modifyMemberView.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 600, 440);
             Stage stage = new Stage();
             stage.setTitle("Modifier un membre");
 
-            // Passez les données du membre sélectionné au contrôleur
+            // Passez les données au contrôleur de la fenêtre de modification
             ModifyMemberController controller = fxmlLoader.getController();
             if (selectedMember instanceof Student) {
                 controller.setMemberData((Student) selectedMember);
@@ -252,19 +255,22 @@ public class MainController implements Initializable {
                 controller.setMemberData((Professor) selectedMember);
             }
 
-            // Afficher la fenêtre
             stage.setScene(scene);
             stage.showAndWait();
 
-            // Rafraîchir la vue principale après modification
-            loadStudents();
-            DirectoryView.getStudentTable().refresh();
+            // Réinitialisez la sélection dans les deux tableaux
+            DirectoryView.getStudentTable().getSelectionModel().clearSelection();
+            DirectoryView.getProfessorTable().getSelectionModel().clearSelection();
 
+            // Rafraîchir les tables après modification
+            DirectoryView.getStudentTable().refresh();
+            DirectoryView.getProfessorTable().refresh();
         } catch (IOException e) {
             new Alert(Alert.AlertType.ERROR, "Erreur lors du chargement de la fenêtre de modification : " + e.getMessage()).show();
             e.printStackTrace();
         }
     }
+
 
     @FXML
     private void onRemoveMemberButtonAction(ActionEvent actionEvent) {
