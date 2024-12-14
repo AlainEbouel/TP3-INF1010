@@ -1,0 +1,87 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ArtifactsWorkspaceSettings\">\n    <artifacts-to-build>\n      <artifact name=\"Server\" />\n    </artifacts-to-build>\n  </component>\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"662af442-1c40-4965-b325-087f3315a383\" name=\"Changes\" comment=\"\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/tp3/App.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/tp3/App.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"MavenImportPreferences\">\n    <option name=\"generalSettings\">\n      <MavenGeneralSettings>\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\n      </MavenGeneralSettings>\n    </option>\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 3\n}</component>\n  <component name=\"ProjectId\" id=\"2osDzuWE0jXSzvnKTMECPq7QUMG\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;Application.ActiveDirectoryServer (1).executor&quot;: &quot;Run&quot;,\n    &quot;Application.ActiveDirectoryServer.executor&quot;: &quot;Run&quot;,\n    &quot;Application.App.executor&quot;: &quot;Run&quot;,\n    &quot;Application.Main.executor&quot;: &quot;Run&quot;,\n    &quot;Application.RmiServer.executor&quot;: &quot;Run&quot;,\n    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,\n    &quot;Maven.tp3 [clean].executor&quot;: &quot;Run&quot;,\n    &quot;Maven.tp3 [install:install].executor&quot;: &quot;Run&quot;,\n    &quot;Maven.tp3 [package].executor&quot;: &quot;Run&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;,\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\n    &quot;last_opened_file_path&quot;: &quot;/home/aebouel@progi.local/pratiques1/java/TP3-INF1010&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\n    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,\n    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,\n    &quot;project.structure.side.proportion&quot;: &quot;0.32050136&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.runner&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  }\n}</component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$\" />\n    </key>\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/databaseBackups\" />\n    </key>\n  </component>\n  <component name=\"RunAnythingCache\">\n    <option name=\"myCommands\">\n      <command value=\"mvn clean\" />\n      <command value=\"mvn install:install\" />\n      <command value=\"mvn package\" />\n    </option>\n  </component>\n  <component name=\"RunManager\" selected=\"Application.App\">\n    <configuration name=\"ActiveDirectoryServer\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"rmi.ActiveDirectoryServer\" />\n      <module name=\"tp3\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"rmi.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"App\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.tp3.App\" />\n      <module name=\"tp3\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"com.tp3.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"RmiServer\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"server.RmiServer\" />\n      <module name=\"tp3\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.App\" />\n        <item itemvalue=\"Application.RmiServer\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103\" />\n        <option value=\"bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"662af442-1c40-4965-b325-087f3315a383\" name=\"Changes\" comment=\"\" />\n      <created>1731649657791</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1731649657791</updated>\n      <workItem from=\"1731649658598\" duration=\"2742000\" />\n      <workItem from=\"1731681098509\" duration=\"753000\" />\n      <workItem from=\"1732063529269\" duration=\"5322000\" />\n      <workItem from=\"1732069195419\" duration=\"6114000\" />\n      <workItem from=\"1732318799593\" duration=\"39625000\" />\n      <workItem from=\"1732578531606\" duration=\"17395000\" />\n      <workItem from=\"1732596065185\" duration=\"126000\" />\n    </task>\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 24e6f2946333caf924705d8af8193abb68b67f2d)
++++ b/.idea/workspace.xml	(date 1733275546631)
+@@ -11,7 +11,6 @@
+   <component name="ChangeListManager">
+     <list default="true" id="662af442-1c40-4965-b325-087f3315a383" name="Changes" comment="">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tp3/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tp3/App.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -21,6 +20,7 @@
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
++        <option value="FxmlFile" />
+         <option value="Class" />
+       </list>
+     </option>
+@@ -64,7 +64,7 @@
+     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+     &quot;project.structure.side.proportion&quot;: &quot;0.32050136&quot;,
+     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.runner&quot;,
+@@ -76,6 +76,7 @@
+       <recent name="$PROJECT_DIR$" />
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
++      <recent name="$PROJECT_DIR$/src/main/resources/styles" />
+       <recent name="$PROJECT_DIR$/databaseBackups" />
+     </key>
+   </component>
+@@ -87,19 +88,6 @@
+     </option>
+   </component>
+   <component name="RunManager" selected="Application.App">
+-    <configuration name="ActiveDirectoryServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="rmi.ActiveDirectoryServer" />
+-      <module name="tp3" />
+-      <extension name="coverage">
+-        <pattern>
+-          <option name="PATTERN" value="rmi.*" />
+-          <option name="ENABLED" value="true" />
+-        </pattern>
+-      </extension>
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="com.tp3.App" />
+       <module name="tp3" />
+@@ -150,6 +138,23 @@
+       <workItem from="1732318799593" duration="39625000" />
+       <workItem from="1732578531606" duration="17395000" />
+       <workItem from="1732596065185" duration="126000" />
++      <workItem from="1732631110613" duration="4725000" />
++      <workItem from="1732636511716" duration="251000" />
++      <workItem from="1732636765924" duration="221000" />
++      <workItem from="1732636988911" duration="11000" />
++      <workItem from="1732637013608" duration="138000" />
++      <workItem from="1732651576048" duration="57000" />
++      <workItem from="1732664430428" duration="3877000" />
++      <workItem from="1732669848926" duration="4068000" />
++      <workItem from="1732673925886" duration="1311000" />
++      <workItem from="1732752185705" duration="5000" />
++      <workItem from="1732752229056" duration="104000" />
++      <workItem from="1732839073577" duration="8611000" />
++      <workItem from="1732848242438" duration="1953000" />
++      <workItem from="1732850198408" duration="7682000" />
++      <workItem from="1732985140347" duration="322000" />
++      <workItem from="1732985782119" duration="9659000" />
++      <workItem from="1733264651114" duration="2381000" />
+     </task>
+     <servers />
+   </component>

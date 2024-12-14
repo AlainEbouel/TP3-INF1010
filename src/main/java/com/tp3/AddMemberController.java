@@ -1,9 +1,6 @@
 package com.tp3;
 
-import client.ActivityField;
-import client.DirectoryView;
-import client.Status;
-import client.Student;
+import client.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -86,8 +83,15 @@ public class AddMemberController implements Initializable {
             return;
         }
 
+        if(selectedActivityField == null) {
+           new Alert(Alert.AlertType.ERROR, "Veuillez sélectionner un domaine d'activité svp!").show();
+           return;
+        }
+
         String firstname = firstnameTextField.getText();
         String lastname = lastNameTextField.getText();
+
+        System.out.println("f:"+ firstname + " l:" + lastname);
         Status status = statusRadioButton.isSelected() ? Status.Actif : Status.Inactif ;
         String activityField = selectedActivityField;
         String phoneNumber = phoneNumberTextField.getText();
@@ -102,6 +106,13 @@ public class AddMemberController implements Initializable {
             }
         }
         else if(profRadioButton.isSelected()) {
+            Professor professor = new Professor(firstname, lastname, birthday, status.toString(), activityField, phoneNumber);
+            activeDirectory.AddProfessor(professor.memberData());
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Voulez-vous créer ce nouvel professeur ?");
+            if (Objects.equals(alert.showAndWait().get().getButtonData().toString(), "OK_DONE")) {
+                mainBorderPane.getScene().getWindow().hide();
+                DirectoryView.loadProfessors(activeDirectory.listProfessors());
+            }
         }
 
     }

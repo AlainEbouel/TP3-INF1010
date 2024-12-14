@@ -71,6 +71,7 @@ public class MainController implements Initializable {
     private BorderPane mainBorderPane;
 
 
+
     private boolean adminConnected;
     private String adminPass = "uqtr";
     private ArrayList<Student> studentList;
@@ -79,6 +80,7 @@ public class MainController implements Initializable {
     private IDirectory  activeDirectory;
     private ArrayList<Button> buttonArrayList;
     private ArrayList<Node> nodeArrayList;
+    private  boolean isStudentTableView;
 
     private void initializeChoiceBox() {
         ArrayList<String> domains = new ArrayList<>();
@@ -101,6 +103,7 @@ public class MainController implements Initializable {
         DirectoryView.initDirectoryView();
         buttonArrayList = new ArrayList<>();
         nodeArrayList = new ArrayList<>();
+        isStudentTableView = true;
 
         loadStudents();
         buttonStyle();
@@ -108,33 +111,42 @@ public class MainController implements Initializable {
         initializeChoiceBox();
     }
 
-
-
     // Connexion de l'administrateur
     @FXML
     private void onLoginButtonAction(ActionEvent actionEvent) throws RemoteException {
 
         if(!adminConnected)
         {
-//            if (!Objects.equals(seConnecterPasswordField.getText(), adminPass)) {
-            if(false){
-            new Alert(Alert.AlertType.ERROR, "Mot de passe incorrect!").show();
+            if (!Objects.equals(seConnecterPasswordField.getText(), adminPass)) {
+//            if(false){
+                new Alert(Alert.AlertType.ERROR, "Mot de passe incorrect!").show();
             }
             else {
-                seConnecterPasswordField.setVisible(false);
                 seConnectButton.setText("Déconnexion");
                 adminConnected = true;
+
+                seConnecterPasswordField.setVisible(false);
                 seConnecterPasswordField.setDisable(true);
+
                 putOnRedListMemberButton.setVisible(true);
+                putOnRedListMemberButton.setDisable(false);
+
                 removeFromRedListMemberButton.setVisible(true);
+                removeFromRedListMemberButton.setDisable(false);
+
                 addMemberButton.setVisible(true);
+                addMemberButton.setDisable(false);
+
                 modifyMemberButton.setVisible(true);
+                modifyMemberButton.setDisable(false);
+
                 deleteMemberButton.setVisible(true);
+                deleteMemberButton.setDisable(false);
             }
             seConnecterPasswordField.clear();
         }
         else {
-            Alert  alert  = new Alert(Alert.AlertType.CONFIRMATION, "Confirmez que Vous souhaitez vous déconnecter!");
+            Alert  alert  = new Alert(Alert.AlertType.CONFIRMATION, "Confirmez que vous souhaitez vous déconnecter!");
             if (Objects.equals(alert.showAndWait().get().getButtonData().toString(), "OK_DONE")) {
                 seConnectButton.setText("Connexion");
                 seConnecterPasswordField.setDisable(false);
@@ -164,10 +176,6 @@ public class MainController implements Initializable {
     // Lister tous les professeurs ou uniquement ceux d'une catégorie
     @FXML
     private void OnlistProfessorContextMenuRequested(ActionEvent actionEvent) {
-        /* TODO */
-        // Cette méthode affiche  les professeurs d'un domaine precis ou  tous les professeurs
-        // Prévoir une étiquette `Tous les professeurs` dans la liste de la ChoiceBox
-        // Cette méthode doit toujours tirer ces donnée depuis la base de donnees.
         try {
             // Récupération du domaine sélectionné dans la ChoiceBox
             String selectedDomain = (String) listProfessorsChoiceBox.getSelectionModel().getSelectedItem();
@@ -202,10 +210,16 @@ public class MainController implements Initializable {
     //Rechercher un membre (Etudiant ou prof)
     @FXML
     private void onSearchMemberButtonAction(ActionEvent actionEvent) {
-        /* TODO */
-        //Cette méthode permet de rechercher un membre
-        //Elle doit afficher tous les membres correspondant au critère de recherche.
-        //L'utilisateur devra choisir s'il veut rechercher un étudiant ou un professeur.
+        String criteria = rechecherTextField.getText();
+        try {
+            ArrayList<ArrayList<String>> members = activeDirectory.SearchMembers(criteria);
+            DirectoryView.loadStudents(members); // Assuming the results are loaded as students for simplicity
+            mainBorderPane.setLeft(DirectoryView.getStudentTable());
+            tableName.setText("Résultats de recherche : " + criteria);
+        } catch (RemoteException e) {
+            new Alert(Alert.AlertType.ERROR, "Erreur lors de la recherche : " + e.getMessage()).show();
+            e.printStackTrace();
+        }
     }
 
     // Ajouter un etudiant ou un prof
@@ -217,23 +231,16 @@ public class MainController implements Initializable {
         stage.setTitle("Ajouter un nouveau membre!");
         stage.setScene(scene);
         stage.show();
-        loadStudents();
-        DirectoryView.getStudentTable().refresh();
+        if(isStudentTableView)
+            loadStudents();
+        else loadProfessors();
+//        DirectoryView.getStudentTable().refresh();
     }
 
     @FXML
     private void onModifyMemberButtonAction(ActionEvent actionEvent) {
         try {
-            Object selectedMember = null;
-
-            // Vérifiez si un étudiant est sélectionné
-            if (DirectoryView.getStudentTable().getSelectionModel().getSelectedItem() != null) {
-                selectedMember = DirectoryView.getStudentTable().getSelectionModel().getSelectedItem();
-            }
-            // Sinon, vérifiez si un professeur est sélectionné
-            else if (DirectoryView.getProfessorTable().getSelectionModel().getSelectedItem() != null) {
-                selectedMember = DirectoryView.getProfessorTable().getSelectionModel().getSelectedItem();
-            }
+            Object selectedMember = getSelectedMember();
 
             // Si aucun membre n'est sélectionné, affichez un avertissement
             if (selectedMember == null) {
@@ -271,31 +278,87 @@ public class MainController implements Initializable {
         }
     }
 
-
     @FXML
     private void onRemoveMemberButtonAction(ActionEvent actionEvent) {
-        TableView.TableViewSelectionModel selectionModel =  DirectoryView.getStudentTable().getSelectionModel();
-        System.out.println("Selected: " +  ((Student)selectionModel.getSelectedItem()).getFirstName());
-//        if(deleteMemberButton.isDisabled()){
-//            deleteMemberButton.setDisable(false);
-//            Alert alert = new Alert(Alert.AlertType.WARNING, "Veuillez d'abord sélectionner un membre svp!");
-//            alert.show();
-//        }
+        Object selectedMember = getSelectedMember();
+
+        if (selectedMember != null) {
+            Alert confirm = new Alert(Alert.AlertType.CONFIRMATION, "Voulez-vous vraiment supprimer ce membre ?");
+            if (confirm.showAndWait().get().getButtonData().isDefaultButton()) {
+                try {
+                    if (selectedMember instanceof Student) {
+                        activeDirectory.removeMember(((Student) selectedMember).getRegistrationNumber());
+                    } else if (selectedMember instanceof Professor) {
+                        activeDirectory.removeMember(((Professor) selectedMember).getRegistrationNumber());
+                    }
+
+                    new Alert(Alert.AlertType.INFORMATION, "Membre supprimé avec succès !").show();
+                    if(isStudentTableView) loadStudents();
+                    else loadProfessors();
+
+                } catch (RemoteException e) {
+                    new Alert(Alert.AlertType.ERROR, "Erreur lors de la suppression : " + e.getMessage()).show();
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Aucun membre sélectionné !").show();
+        }
     }
 
     @FXML
     private void onPutListeRougeButtonAction(ActionEvent actionEvent) {
-        /* TODO */
-        // Cette méthode met sur liste rouge le membre (Étudiant ou professeur ) sélectionné dans le vue principale(TableView)
-        // La modification se reflêter dans la vue principale(TableView) et dans la base de donnée(`univertisy` database).
-        // Un membre qui est sur la liste rouge a le status `Inactif` dans la base de donnee
+        boolean isStudent = true;
+        Object selectedMember = getSelectedMember();
+        if (selectedMember != null) {
+            if (Objects.equals(((Member) selectedMember).getStatus(), "Inactif")) {
+                new Alert(Alert.AlertType.INFORMATION, "Ce membre est dèjà sur la liste rouge.").show();
+                return ;
+            }
+            Alert confirm = new Alert(Alert.AlertType.CONFIRMATION, "Voulez-vous vraiment ajouter ce membre à la liste rouge ?");
+            if (confirm.showAndWait().get().getButtonData().isDefaultButton()) {
+                try {
+                    String id = ((Member) selectedMember).getRegistrationNumber();
+                    activeDirectory.putOnRedList(id);
+//                    new Alert(Alert.AlertType.INFORMATION, "Membre ajouté à la liste rouge !").show();
+                    if (isStudentTableView) loadStudents();
+                    else loadProfessors();
+
+                } catch (RemoteException e) {
+                    new Alert(Alert.AlertType.ERROR, "Erreur lors de la mise à jour : " + e.getMessage()).show();
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Aucun membre sélectionné !").show();
+        }
     }
 
     @FXML
     private void onRemoveFromRedListButtonAction(ActionEvent actionEvent) {
-        /* TODO */
-        //Cette méthode retire un membre de la liste rouge(Inactif =>Actif)
-        // La base de donnnees doit etre mise a jour.
+        Object selectedMember = getSelectedMember();
+        if (selectedMember != null) {
+            if (Objects.equals(((Member) selectedMember).getStatus(), "Actif")) {
+                new Alert(Alert.AlertType.INFORMATION, "Ce membre n'est pas sur la liste rouge.").show();
+                return ;
+            }
+            Alert confirm = new Alert(Alert.AlertType.CONFIRMATION, "Voulez-vous vraiment retirer ce membre de la liste rouge ?");
+            if (confirm.showAndWait().get().getButtonData().isDefaultButton()) {
+                try {
+                    String id = ((Member) selectedMember).getRegistrationNumber();
+                    activeDirectory.removeFromRedList(id);
+//                    new Alert(Alert.AlertType.INFORMATION, "Membre retiré de la liste rouge !").show();
+                    if (isStudentTableView) loadStudents();
+                    else loadProfessors();
+
+                } catch (RemoteException e) {
+                    new Alert(Alert.AlertType.ERROR, "Erreur lors de la mise à jour : " + e.getMessage()).show();
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Aucun membre sélectionné !").show();
+        }
     }
     @FXML
     private void onThemesContextMenuRequested(ContextMenuEvent contextMenuEvent) {
@@ -324,6 +387,19 @@ public class MainController implements Initializable {
         };
     }
 
+    private Object getSelectedMember() {
+        Object selectedMember ;
+
+        if(mainBorderPane.getLeft() == DirectoryView.getStudentTable()) {
+            selectedMember = DirectoryView.getStudentTable().getSelectionModel().getSelectedItem();
+            isStudentTableView = true;
+        }
+        else  {
+            selectedMember = DirectoryView.getProfessorTable().getSelectionModel().getSelectedItem();
+            isStudentTableView = false;
+        }
+        return selectedMember;
+    }
 
     public void onThemesMouseClicked(MouseEvent mouseEvent) {
         System.out.println("onThemesMenuButtonAction theme");
@@ -372,6 +448,16 @@ public class MainController implements Initializable {
         }
         mainBorderPane.setLeft(DirectoryView.getStudentTable());
         tableName.setText("Étudiants");
+    }
+
+    private void loadProfessors(){
+        try {
+            DirectoryView.loadProfessors(activeDirectory.listProfessors());
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+        mainBorderPane.setLeft(DirectoryView.getProfessorTable());
+        tableName.setText("Professors");
     }
 
 

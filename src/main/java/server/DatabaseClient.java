@@ -45,9 +45,6 @@ public class DatabaseClient {
     }
 
     public static ArrayList<ArrayList<String>> selectAllprofessors()  {
-        /*TODO */
-        // Cette méthode recupère  tous les professeurs
-        // Cette méthode doit toujours tirer ces donnée depuis la base de donnees.
         ArrayList<ArrayList<String>> professorList = new ArrayList<>();
         connect();
         try {
@@ -71,9 +68,6 @@ public class DatabaseClient {
         return professorList;
     }
     public static ArrayList<ArrayList<String>> selectProfessorsFromActivityField(String activityField)  {
-        /*TODO*/
-        // Cette méthode recupère  tous les professeurs d'un domaine précis
-        // Cette méthode doit toujours tirer ces donnée depuis la base de donnees.
         ArrayList<ArrayList<String>> professorList = new ArrayList<>();
         connect();
         try {
@@ -102,30 +96,97 @@ public class DatabaseClient {
         return professorList;
     }
     public static void putOnRedList(String registrationNumber)  {
-        /*TODO*/
-        // Cette met un etudiant ou un professeur sur la liste (rouge dans la base de données)
+        connect();
+        try {
+            String sql = "UPDATE students SET status = 'Inactif' WHERE registration_number = ?";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, registrationNumber);
+            pstmt.executeUpdate();
 
+            sql = "UPDATE professors SET status = 'Inactif' WHERE registration_number = ?";
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, registrationNumber);
+            pstmt.executeUpdate();
+
+            pstmt.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     public static void removeFromRedList(String registrationNumber)  {
-        /*TODO*/
-        // Cette retire un etudiant ou un professeur de la liste (rouge dans la base de données)
+        connect();
+        try {
+            String sql = "UPDATE students SET status = 'Actif' WHERE registration_number = ?";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, registrationNumber);
+            pstmt.executeUpdate();
+
+            sql = "UPDATE professors SET status = 'Actif' WHERE registration_number = ?";
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, registrationNumber);
+            pstmt.executeUpdate();
+
+            pstmt.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     public static ArrayList<ArrayList<String>> searchMembers(String criteria)  {
-        /*TODO*/
-        // Cette méthode permet de rechercher des membres selon un critère parmi les attributs du membres
-        // La recherche est effectuée dans la base de donnée.
-        return null;
+        connect();
+        ArrayList<ArrayList<String>> members = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM students WHERE first_name LIKE ? OR last_name LIKE ? OR email LIKE ?";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, "%" + criteria + "%");
+            pstmt.setString(2, "%" + criteria + "%");
+            pstmt.setString(3, "%" + criteria + "%");
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                ArrayList<String> student = new ArrayList<>();
+                student.add(rs.getString("first_name"));
+                student.add(rs.getString("last_name"));
+                student.add(rs.getString("email"));
+                student.add(rs.getDate("birthdate").toString());
+                student.add(rs.getString("status"));
+                student.add(rs.getString("activityField"));
+                student.add(rs.getString("registration_number"));
+                members.add(student);
+            }
+
+            sql = "SELECT * FROM professors WHERE first_name LIKE ? OR last_name LIKE ? OR email LIKE ?";
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, "%" + criteria + "%");
+            pstmt.setString(2, "%" + criteria + "%");
+            pstmt.setString(3, "%" + criteria + "%");
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                ArrayList<String> professor = new ArrayList<>();
+                professor.add(rs.getString("first_name"));
+                professor.add(rs.getString("last_name"));
+                professor.add(rs.getString("email"));
+                professor.add(rs.getDate("birthdate").toString());
+                professor.add(rs.getString("status"));
+                professor.add(rs.getString("activityField"));
+                professor.add(rs.getString("phone_number"));
+                professor.add(rs.getString("registration_number"));
+                members.add(professor);
+            }
+
+            pstmt.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return members;
     }
+
     public static void addStudent(ArrayList<String> studentData) {
        connect();
         try {
-            System.out.println(studentData.get(0));
-            System.out.println(studentData.get(1));
-            System.out.println(studentData.get(2));
-            System.out.println(studentData.get(3));
-            System.out.println(studentData.get(4));
-            System.out.println(studentData.get(5));
-            System.out.println(studentData.get(6));
             statement.execute("INSERT INTO `students` (`first_name`, `last_name`, `email`, `birthdate`, `status`, `activityField`, `registration_number`) VALUES\n" +
                     "( '" + studentData.get(0) + "', '" + studentData.get(1) + "', '" + studentData.get(2) + "', '" + studentData.get(3) +
                     "', '" + studentData.get(4) + "', '" + studentData.get(5) + "', '" + studentData.get(6) + "');");
@@ -134,12 +195,23 @@ public class DatabaseClient {
         }
     }
     public static void addProfessor(ArrayList<String> profData) {
-        /*TODO */
-        // Cette meéthode insert un nouvel professeur dans la base de données
+        connect();
+        try {
+            String sql = "INSERT INTO professors (first_name, last_name, email, birthdate, status, activityField, phone_number, registration_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+
+            for (int i = 0; i < profData.size(); i++) {
+                pstmt.setString(i + 1, profData.get(i));
+            }
+
+            pstmt.executeUpdate();
+            pstmt.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     public static void modifyStudent(ArrayList<String> studentData)  {
-        /*TODO */
-        // Cette méthode modifie 1 ou plusieurs attributs d'un étudiant dans la base de données
         connect(); // Assurez-vous que la connexion à la base de données est établie
         try {
             // Préparer la requête SQL de mise à jour
@@ -178,8 +250,6 @@ public class DatabaseClient {
         }
     }
     public static void modifyProfessor(ArrayList<String> profData) {
-        /*TODO */
-        // Cette méthode modifie 1 ou plusieurs attributs d'un professor dans la base de données
         connect();
         try {
             String sql = "UPDATE professors SET first_name = ?, last_name = ?, email = ?, birthdate = ?, status = ?, activityField = ?, phone_number = ? WHERE registration_number = ?";
@@ -212,8 +282,23 @@ public class DatabaseClient {
         }
     }
     public static void removeMember(String registrationNumber) {
-        /*TODO */
-        // Cette méthode supprime un membre dans la base de données
+        connect();
+        try {
+            String sql = "DELETE FROM students WHERE registration_number = ?";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, registrationNumber);
+            pstmt.executeUpdate();
+
+            sql = "DELETE FROM professors WHERE registration_number = ?";
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, registrationNumber);
+            pstmt.executeUpdate();
+
+            pstmt.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static Connection getConnection() {

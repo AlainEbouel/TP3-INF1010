@@ -58,6 +58,8 @@ public class DirectoryView {
         TableColumn<Student, String> column7 = new TableColumn<>("Matricule");
         column7.setCellValueFactory(c -> c.getValue().registrationNumberProperty());
         studentTable.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7);
+
+
     }
     private static void createProfessorColumns() {
         TableColumn<Professor, String> column1 = new TableColumn<>("Prénom");

@@ -120,7 +120,7 @@ public abstract class Member {
 
     private String generateEmail()
     {
-        return (firstName.getValue() + "."+ lastName.getValue() + "@uqtr.ca").toLowerCase();
+        return (firstName.getValue() + "."+ lastName.getValue().trim() + "@uqtr.ca").toLowerCase().replaceAll(" ", "");
     }
 
     private String generateRegistrationNumber() {
@@ -128,9 +128,18 @@ public abstract class Member {
             // Retournez le numéro d'enregistrement existant si déjà défini
             return this.registrationNumber.getValue();
         }
-        return lastName.getValue().substring(0, 3).toUpperCase()
+        String rNumber;
+        try{
+         rNumber = lastName.getValue().substring(0, 3).toUpperCase()
                 + firstName.getValue().toUpperCase().charAt(0)
                 + birthDate.getValue().replace("-", "");
+        }catch (StringIndexOutOfBoundsException e){
+
+            rNumber = lastName.getValue().toUpperCase()
+                    + firstName.getValue().toUpperCase().charAt(0)
+                    + birthDate.getValue().replace("-", "");
+        }
+        return rNumber;
     }
 
     private String toTitleCase(String word){
