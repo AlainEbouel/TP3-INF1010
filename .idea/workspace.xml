@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="Server" />
+      <artifact name="RMI" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -10,7 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="662af442-1c40-4965-b325-087f3315a383" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/RMI.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-12-03__9_36p_m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-12-03__9_36p_m___Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Client/tp3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/MainApp/tp3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RMI/tp3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server/tp3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,15 +64,15 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;X:/TP3_INF1010/mysql/mysql-connector-j-9.1.0.jar&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/JetBrains/IntelliJ IDEA Ultimate/bin/wslproxy&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.32050136&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.1150748&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.runner&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -85,7 +92,7 @@
       <command value="mvn package" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RunManager" selected="Application.RmiServer">
     <configuration name="ActiveDirectoryServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="rmi.ActiveDirectoryServer" />
       <module name="tp3" />
@@ -121,8 +128,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.App" />
         <item itemvalue="Application.RmiServer" />
+        <item itemvalue="Application.App" />
       </list>
     </recent_temporary>
   </component>
@@ -151,6 +158,8 @@
       <workItem from="1732596065185" duration="126000" />
       <workItem from="1732643752490" duration="2196000" />
       <workItem from="1734284883959" duration="4686000" />
+      <workItem from="1734291390560" duration="2151000" />
+      <workItem from="1734294027581" duration="727000" />
     </task>
     <servers />
   </component>
