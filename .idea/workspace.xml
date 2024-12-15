@@ -10,8 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="662af442-1c40-4965-b325-087f3315a383" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tp3/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tp3/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/tp3/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/tp3/mainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

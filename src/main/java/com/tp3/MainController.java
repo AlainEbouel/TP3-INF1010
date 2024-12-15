@@ -72,8 +72,6 @@ public class MainController implements Initializable {
     @FXML
     private BorderPane mainBorderPane;
 
-    @FXML
-    private ChoiceBox<String>  themeChoiceBox;
 
     private boolean adminConnected;
     private String adminPass = "uqtr";
@@ -102,7 +100,6 @@ public class MainController implements Initializable {
         buttonStyle();
         // Initialisation de la ChoiceBox des domaines d'activité
         initializeChoiceBox();
-        setupThemeChoiceBox();
     }
 
     // Connexion de l'administrateur
@@ -465,7 +462,6 @@ public class MainController implements Initializable {
         tableName.setText("Professors");
     }
 
-
     private void buttonStyle() {
         loadArraylistNode();
         for (Button button : buttonArrayList) {
@@ -474,30 +470,4 @@ public class MainController implements Initializable {
         }
     }
 
-    private void setupThemeChoiceBox() {
-        // Adding themes to the ChoiceBox
-        themeChoiceBox.getItems().addAll("Clair", "Sombre", "Bleu");
-        themeChoiceBox.getSelectionModel().selectFirst(); // Default theme
-
-        // Adding listener for theme changes
-        themeChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> applyTheme(newValue));
-    }
-
-    private void applyTheme(String theme) {
-        // Clearing current styles
-        mainBorderPane.getStylesheets().clear();
-
-        // Applying the selected theme
-        switch (theme) {
-            case "Clair":
-                mainBorderPane.getStylesheets().add(getClass().getResource("/themes/light.css").toExternalForm());
-                break;
-            case "Sombre":
-                mainBorderPane.getStylesheets().add(getClass().getResource("/themes/dark.css").toExternalForm());
-                break;
-            case "Bleu":
-                mainBorderPane.getStylesheets().add(getClass().getResource("/themes/blue.css").toExternalForm());
-                break;
-        }
-    }
 }
