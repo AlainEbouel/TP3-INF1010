@@ -72,8 +72,8 @@ public class MainController implements Initializable {
     @FXML
     private BorderPane mainBorderPane;
 
-//    @FXML
-//    private ChoiceBox<String>  themeChoiceBox;
+    @FXML
+    private ChoiceBox<String>  themeChoiceBox;
 
     private boolean adminConnected;
     private String adminPass = "uqtr";
@@ -102,7 +102,7 @@ public class MainController implements Initializable {
         buttonStyle();
         // Initialisation de la ChoiceBox des domaines d'activité
         initializeChoiceBox();
-//        setupThemeChoiceBox();
+        setupThemeChoiceBox();
     }
 
     // Connexion de l'administrateur
