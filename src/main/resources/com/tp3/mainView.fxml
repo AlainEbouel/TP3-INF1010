@@ -5,12 +5,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<BorderPane id="mainBorderPane" fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1280.0" style="-fx-background-color: #032219;" stylesheets="@../../styles/mainView.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tp3.MainController">
+<BorderPane id="mainBorderPane" fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1280.0" style="-fx-background-color: #032219;" stylesheets="@../../styles/mainView.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tp3.MainController">
    <padding>
       <Insets bottom="50.0" left="50.0" right="50.0" top="10.0" />
    </padding>
    <right>
-      <VBox fx:id="nodeSearch" alignment="CENTER" prefHeight="225.0" prefWidth="221.0" spacing="50.0" style="-fx-background-color: #18473c; -fx-border-color: black;" BorderPane.alignment="CENTER">
+      <VBox fx:id="nodeSearch" alignment="CENTER" prefHeight="225.0" prefWidth="221.0" spacing="50.0" style="-fx-background-color: #18473c; -fx-border-color: #032219;" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" prefHeight="88.0" prefWidth="244.0" spacing="15.0">
                <children>
@@ -24,9 +24,8 @@
                </children>
             </VBox>
             <VBox alignment="CENTER" spacing="10">
-               <Label text="Filtrer par domaine" />
-               <ChoiceBox fx:id="listProfessorsChoiceBox" prefWidth="200" style="-fx-background-color: black; -fx-text-fill: white;" />
-               <Button onAction="#OnlistProfessorContextMenuRequested" text="Afficher les professeurs" />
+               <ChoiceBox fx:id="listProfessorsChoiceBox" prefWidth="200" style="-fx-background-color: #032219; -fx-text-fill: white; -fx-fill: red " />
+               <Button fx:id="listProfessorButton" onAction="#OnlistProfessorContextMenuRequested" text="Afficher les professeurs" />
             </VBox>
             <VBox prefHeight="62.0" prefWidth="188.0" spacing="5.0">
                <children>
@@ -44,7 +43,7 @@
       </VBox>
    </right>
    <top>
-      <VBox prefHeight="187.0" prefWidth="1180.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="154.0" prefWidth="1180.0" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="118.0" prefWidth="1180.0">
                <children>

@@ -15,7 +15,15 @@ Button{
 Label{
     -fx-text-fill: white;
 }
+Label{
+    -fx-text-fill: white;
+}
 
 MenuButton {
     -fx-text-fill: #bdbbbb;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
 }

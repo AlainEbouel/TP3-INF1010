@@ -48,6 +48,8 @@ public class MainController implements Initializable {
     @FXML
     private Button listStudentButton;
     @FXML
+    private Button listProfessorButton;
+    @FXML
     private Button rechercherButton;
     @FXML
     private Button seConnectButton;
@@ -69,8 +71,6 @@ public class MainController implements Initializable {
     private ChoiceBox listProfessorsChoiceBox;
     @FXML
     private BorderPane mainBorderPane;
-
-
 
     private boolean adminConnected;
     private String adminPass = "uqtr";
@@ -427,6 +427,7 @@ public class MainController implements Initializable {
  // Peuplement des listes
     private void loadArraylistNode() {
         buttonArrayList.add(listStudentButton);
+        buttonArrayList.add(listProfessorButton);
         buttonArrayList.add(rechercherButton);
         buttonArrayList.add(seConnectButton);
         buttonArrayList.add(addMemberButton);
@@ -464,9 +465,11 @@ public class MainController implements Initializable {
     private void buttonStyle() {
         loadArraylistNode();
         for (Button button : buttonArrayList) {
-            button.setOnMouseEntered(e -> button.setStyle(" -fx-border-color: white;  -fx-text-fill: white"));
-            button.setOnMouseExited(e -> button.setStyle("-fx-border-color: #bdbbbb; -fx-text-fill: #bdbbbb "));
+            button.setOnMouseEntered(e -> button.setStyle(" -fx-border-color: white;  -fx-text-fill: white;"));
+            button.setOnMouseExited(e -> button.setStyle("-fx-border-color: #bdbbbb; -fx-text-fill: #bdbbbb; "));
         }
+//        listProfessorsChoiceBox.setOnMouseEntered(e -> listProfessorsChoiceBox.setStyle(" -fx-border-color: white;  "));
+//        listProfessorsChoiceBox.setOnMouseExited(e -> listProfessorsChoiceBox.setStyle("-fx-border-color: #bdbbbb; "));
     }
 
 

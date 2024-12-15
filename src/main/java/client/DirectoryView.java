@@ -77,6 +77,8 @@ public class DirectoryView {
         TableColumn<Professor, String> column7 = new TableColumn<>("Téléphone");
         column7.setCellValueFactory(c -> c.getValue().phoneNumberProperty());
         professorTable.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7);
+        column1.setStyle("");
+
     }
 
     public static void loadStudents(ArrayList<ArrayList<String>> students) {
@@ -98,6 +100,7 @@ public class DirectoryView {
     private static void tableStyle(TableView tableView) {
         tableView.setPrefWidth(1200);
         tableView.setStyle("-fx-background-color: #782626");
+
     }
 
 

@@ -12,9 +12,10 @@
     <list default="true" id="662af442-1c40-4965-b325-087f3315a383" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-12-03__9_36p_m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-12-03__9_36p_m___Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tp3/ModifyMemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tp3/ModifyMemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/DirectoryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/DirectoryView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tp3/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tp3/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/tp3/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/tp3/mainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/tp3/modifyMemberView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/tp3/modifyMemberView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/styles/mainView.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles/mainView.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +25,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -62,7 +62,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/sriha/Desktop/TP3-INF1010/mysql/mysql-connector-j-9.1.0.jar",
+    "last_opened_file_path": "X:/TP3_INF1010/mysql/mysql-connector-j-9.1.0.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -90,13 +90,13 @@
       <command value="mvn package" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.tp3.App" />
+  <component name="RunManager" selected="Application.App">
+    <configuration name="ActiveDirectoryServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="rmi.ActiveDirectoryServer" />
       <module name="tp3" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.tp3.*" />
+          <option name="PATTERN" value="rmi.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -104,8 +104,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.tp3.Main" />
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.tp3.App" />
       <module name="tp3" />
       <extension name="coverage">
         <pattern>
@@ -126,9 +126,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.RmiServer" />
         <item itemvalue="Application.App" />
+        <item itemvalue="Application.RmiServer" />
       </list>
     </recent_temporary>
   </component>
@@ -155,11 +154,8 @@
       <workItem from="1732318799593" duration="39625000" />
       <workItem from="1732578531606" duration="17395000" />
       <workItem from="1732596065185" duration="126000" />
-      <workItem from="1733264446168" duration="12485000" />
-      <workItem from="1733792805505" duration="5366000" />
-      <workItem from="1733883968804" duration="2552000" />
-      <workItem from="1733970146723" duration="16608000" />
-      <workItem from="1734222014454" duration="4631000" />
+      <workItem from="1732643752490" duration="2196000" />
+      <workItem from="1734284883959" duration="2920000" />
     </task>
     <servers />
   </component>
