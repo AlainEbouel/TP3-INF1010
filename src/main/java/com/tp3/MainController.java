@@ -72,6 +72,9 @@ public class MainController implements Initializable {
     @FXML
     private BorderPane mainBorderPane;
 
+//    @FXML
+//    private ChoiceBox<String>  themeChoiceBox;
+
     private boolean adminConnected;
     private String adminPass = "uqtr";
     private ArrayList<Student> studentList;
@@ -81,16 +84,6 @@ public class MainController implements Initializable {
     private ArrayList<Button> buttonArrayList;
     private ArrayList<Node> nodeArrayList;
     private  boolean isStudentTableView;
-
-    private void initializeChoiceBox() {
-        ArrayList<String> domains = new ArrayList<>();
-        domains.add("Tous les professeurs"); // Option par défaut
-        for (ActivityField field : ActivityField.getActivityFields()) {
-            domains.add(field.getField());
-        }
-        listProfessorsChoiceBox.getItems().setAll(domains);
-        listProfessorsChoiceBox.getSelectionModel().select("Tous les professeurs"); // Valeur par défaut
-    }
 
 
     @Override
@@ -109,6 +102,7 @@ public class MainController implements Initializable {
         buttonStyle();
         // Initialisation de la ChoiceBox des domaines d'activité
         initializeChoiceBox();
+//        setupThemeChoiceBox();
     }
 
     // Connexion de l'administrateur
@@ -374,17 +368,27 @@ public class MainController implements Initializable {
         };
         System.out.println(((MenuItem)contextMenuEvent.getSource()).getText() + " selected");
     }
-    public void onThemesMenuButtonAction(ActionEvent actionEvent) {
-        System.out.println("onThemesMenuButtonAction theme");
-        System.out.println("onThemesMenuButtonAction: " + themesMenuButton.getOnAction().toString());
-        System.out.println("onThemesMenuButtonAction: " + ((MenuItem)actionEvent.getSource()).getText());
-        EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e)
-            {
-                System.out.println(((MenuItem)e.getSource()).getText() + " selected");
-                System.out.println(((MenuItem)actionEvent.getSource()).getText() + " selected");
-            }
-        };
+//    public void onThemesMenuButtonAction(ActionEvent actionEvent) {
+//        System.out.println("onThemesMenuButtonAction theme");
+//        System.out.println("onThemesMenuButtonAction: " + themesMenuButton.getOnAction().toString());
+//        System.out.println("onThemesMenuButtonAction: " + ((MenuItem)actionEvent.getSource()).getText());
+//        EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent>() {
+//            public void handle(ActionEvent e)
+//            {
+//                System.out.println(((MenuItem)e.getSource()).getText() + " selected");
+//                System.out.println(((MenuItem)actionEvent.getSource()).getText() + " selected");
+//            }
+//        };
+//    }
+
+    private void initializeChoiceBox() {
+        ArrayList<String> domains = new ArrayList<>();
+        domains.add("Tous les professeurs"); // Option par défaut
+        for (ActivityField field : ActivityField.getActivityFields()) {
+            domains.add(field.getField());
+        }
+        listProfessorsChoiceBox.getItems().setAll(domains);
+        listProfessorsChoiceBox.getSelectionModel().select("Tous les professeurs"); // Valeur par défaut
     }
 
     private Object getSelectedMember() {
@@ -468,9 +472,32 @@ public class MainController implements Initializable {
             button.setOnMouseEntered(e -> button.setStyle(" -fx-border-color: white;  -fx-text-fill: white;"));
             button.setOnMouseExited(e -> button.setStyle("-fx-border-color: #bdbbbb; -fx-text-fill: #bdbbbb; "));
         }
-//        listProfessorsChoiceBox.setOnMouseEntered(e -> listProfessorsChoiceBox.setStyle(" -fx-border-color: white;  "));
-//        listProfessorsChoiceBox.setOnMouseExited(e -> listProfessorsChoiceBox.setStyle("-fx-border-color: #bdbbbb; "));
     }
 
+    private void setupThemeChoiceBox() {
+        // Adding themes to the ChoiceBox
+        themeChoiceBox.getItems().addAll("Clair", "Sombre", "Bleu");
+        themeChoiceBox.getSelectionModel().selectFirst(); // Default theme
 
+        // Adding listener for theme changes
+        themeChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> applyTheme(newValue));
+    }
+
+    private void applyTheme(String theme) {
+        // Clearing current styles
+        mainBorderPane.getStylesheets().clear();
+
+        // Applying the selected theme
+        switch (theme) {
+            case "Clair":
+                mainBorderPane.getStylesheets().add(getClass().getResource("/themes/light.css").toExternalForm());
+                break;
+            case "Sombre":
+                mainBorderPane.getStylesheets().add(getClass().getResource("/themes/dark.css").toExternalForm());
+                break;
+            case "Bleu":
+                mainBorderPane.getStylesheets().add(getClass().getResource("/themes/blue.css").toExternalForm());
+                break;
+        }
+    }
 }
