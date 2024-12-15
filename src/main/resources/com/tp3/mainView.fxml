@@ -15,17 +15,17 @@
             <VBox alignment="CENTER" prefHeight="88.0" prefWidth="244.0" spacing="15.0">
                <children>
                   <Button fx:id="listStudentButton" mnemonicParsing="false" onAction="#onListStudentButtonAction" prefHeight="26.0" prefWidth="175.0" text="Lister les étudiants" textFill="blue" />
-                  <MenuButton alignment="CENTER_RIGHT" mnemonicParsing="false" onContextMenuRequested="#OnlistProfessorContextMenuRequested" style="-fx-text-fill: white;" text="Lister les professeurs">
+                  <!--<MenuButton alignment="CENTER_RIGHT" mnemonicParsing="false" onContextMenuRequested="#OnlistProfessorContextMenuRequested" style="-fx-text-fill: white;" text="Lister les professeurs">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Action 1" />
                       <MenuItem mnemonicParsing="false" text="Action 2" />
                     </items>
-                  </MenuButton>
+                  </MenuButton>-->
                </children>
             </VBox>
             <VBox alignment="CENTER" spacing="10">
                <Label text="Filtrer par domaine" />
-               <ChoiceBox fx:id="listProfessorsChoiceBox" prefWidth="200" />
+               <ChoiceBox fx:id="listProfessorsChoiceBox" prefWidth="200" style="-fx-background-color: black; -fx-text-fill: white;" />
                <Button onAction="#OnlistProfessorContextMenuRequested" text="Afficher les professeurs" />
             </VBox>
             <VBox prefHeight="62.0" prefWidth="188.0" spacing="5.0">

@@ -39,9 +39,9 @@
             <Label text="Domaine :" style="-fx-text-fill: white;" GridPane.rowIndex="5" />
             <ChoiceBox fx:id="activityFieldChoiceBox" GridPane.rowIndex="5" GridPane.columnIndex="1" />
 
-            <!-- Téléphone (si professeur) -->
-            <Label text="Téléphone (Professeur) :" style="-fx-text-fill: white;" GridPane.rowIndex="6" />
-            <TextField fx:id="phoneNumberField" GridPane.rowIndex="6" GridPane.columnIndex="1" />
+            <!-- Téléphone  -->
+            <Label fx:id="phoneNumberLabel" text="Téléphone :" style="-fx-text-fill: white;" GridPane.rowIndex="6" GridPane.columnIndex="0" visible="false" />
+            <TextField fx:id="phoneNumberField" GridPane.rowIndex="6" GridPane.columnIndex="1" visible="false" />
         </GridPane>
     </center>
 
